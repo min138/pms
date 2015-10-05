@@ -51,16 +51,7 @@ $class = strtolower($this->router->fetch_class());
 
                 </ul>
             </li>
-            
-            
-            <li class="start">
-                <a href="<?php echo base_url('dashboard/logout'); ?>">
-                    <i class="fa fa-key"></i>
-                    <span class="title">Logout</span>
-                    <span class="selected"></span>
-                </a>
-            </li>
-        </ul>
+         </ul>
         <!-- END SIDEBAR MENU -->
     </div>
 </div>

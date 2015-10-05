@@ -12,10 +12,10 @@ Class User extends CI_Model {
 
     function login($username, $password) {
 
-        $this->db->where('uname', $username);
-        $this->db->where('pwd', $password);
+        $this->db->where('company_email_id', $username);
+        $this->db->where('password', $password);
         $this->db->limit(1);
-        $query = $this->db->get('tbl_login');
+        $query = $this->db->get('login_master');
 
         if ($query->num_rows() == 1) {
             return $query->result();
