@@ -1,12 +1,12 @@
 $(document).ready(function () {
-    alert("test");
     $("#myForm").submit(function (e) {
+        alert("test");
         e.preventDefault();
-        dataString = $("#designation_form").serialize();
+        dataString = $("#myForm").serialize();
 
         $.ajax({
             type: "POST",
-            url: BASE_URL + "employee/add_employee",
+            url: BASE_URL + "employee_master/add_employee",
             data: dataString,
             dataType: "json",
             success: function (data) {

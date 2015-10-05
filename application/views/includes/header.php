@@ -49,6 +49,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <?php echo add_css('themes/default.css'); ?>
         <?php echo add_css('custom.css'); ?>
 
+        <script>
+            var BASE_URL = "<?php echo base_url(); ?>";
+        </script>
+
         <!-- END THEME STYLES -->
         <link rel="shortcut icon" href="favicon.ico"/>
     </head>
@@ -201,8 +205,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <li>
                                         <a href="inbox.html?a=view">
                                             <span class="photo">
-                                                <img src="<?php echo asset_url("img/avatar2.jpg")?>" alt=""/>
-                                                
+                                                <img src="<?php echo asset_url("img/avatar2.jpg") ?>" alt=""/>
+
                                             </span>
                                             <span class="subject">
                                                 <span class="from">
@@ -217,7 +221,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <li>
                                         <a href="inbox.html?a=view">
                                             <span class="photo">
-                                                <img src="<?php echo asset_url("img/avatar3.jpg")?>" alt=""/>
+                                                <img src="<?php echo asset_url("img/avatar3.jpg") ?>" alt=""/>
                                             </span>
                                             <span class="subject">
                                                 <span class="from">
@@ -232,7 +236,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <li>
                                         <a href="inbox.html?a=view">
                                             <span class="photo">
-                                                <img src="<?php echo asset_url('img/avatar1.jpg')?>" alt=""/>
+                                                <img src="<?php echo asset_url('img/avatar1.jpg') ?>" alt=""/>
                                             </span>
                                             <span class="subject">
                                                 <span class="from">
@@ -247,7 +251,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <li>
                                         <a href="inbox.html?a=view">
                                             <span class="photo">
-                                                <img src="<?php echo asset_url('img/avatar2.jpg')?>" alt=""/>
+                                                <img src="<?php echo asset_url('img/avatar2.jpg') ?>" alt=""/>
                                             </span>
                                             <span class="subject">
                                                 <span class="from">
@@ -262,7 +266,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <li>
                                         <a href="inbox.html?a=view">
                                             <span class="photo">
-                                                <img src="<?php echo asset_url('img/avatar3.jpg')?>" alt=""/>
+                                                <img src="<?php echo asset_url('img/avatar3.jpg') ?>" alt=""/>
                                             </span>
                                             <span class="subject">
                                                 <span class="from">
