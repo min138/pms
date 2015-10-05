@@ -7,7 +7,7 @@
         <div class="portlet">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-reorder"></i>Designation Form Test GIT
+                    <i class="fa fa-reorder"></i>Designation Form
                 </div>
             </div>
             <div class="portlet-body form">
