@@ -327,30 +327,62 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
 
-                            </div>
-                        </div>
-                        <!--/row-->
-                    </div>
-                    <div class="form-actions">
-                        <div class="row">
-                            <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-offset-3 col-md-9">
-                                        <button type="submit" class="btn btn-success">Submit</button>
-                                        <button type="button" class="btn btn-default">Cancel</button>
+                                    <div class="col-sm-12">
+                                        <h3 class="form-section">Employee Login Detail</h3>
+
+                                        <div class="col-sm-6 form-group">
+                                            <div class="col-sm-3">
+                                                <label class="control-label">
+                                                    Employee Login ID
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="employee_code" class="form-control"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 form-group">
+                                            <div class="col-sm-3">
+                                                <label class="control-label">
+                                                    Password
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="employee_first_name" class="form-control"/>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+
+                        </div>
+                    </div>
+                    <!--/row-->
+
+
+
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button type="button" class="btn btn-default">Cancel</button>
                             </div>
                         </div>
                     </div>
-                </form>
-                <!-- END SAMPLE FORM PORTLET-->
+                    <div class="col-md-6">
+                    </div>
+                </div>
             </div>
+            </form>
+            <!-- END SAMPLE FORM PORTLET-->
         </div>
     </div>
+</div>
 </div>
