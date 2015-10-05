@@ -49,6 +49,14 @@ $class = strtolower($this->router->fetch_class());
                         </a>
                     </li>
 
+                    
+                      <li class="start <?php echo $class == "department" ? "active" : ''; ?> ">
+                <a href="<?php echo base_url('department/add_department'); ?>">
+                    <i class="icon-grid"></i>
+                    <span class="title">Department</span>
+                    <span class="selected"></span>
+                </a>
+            </li>
                 </ul>
             </li>
          </ul>
