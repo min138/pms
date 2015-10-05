@@ -11,7 +11,10 @@ class Login {
         $this->CI->load->library('session');
         $username = $this->CI->session->userdata('username');
         $class_name = $this->CI->router->fetch_class();
-        $method_name = $this->CI->router->fetch_method();
+        //$method_name = $this->CI->router->
+
+        
+        //Stashed changes
 
         if (empty($username) && $class_name != "auth") {
             redirect(base_url("auth"));

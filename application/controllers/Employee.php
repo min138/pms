@@ -13,33 +13,15 @@ class Employee extends CI_Controller {
 
         //page level css
         $this->template->add_css('plugins/select2/select2.css');
-        $this->template->add_css('plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css');
-        $this->template->add_css('plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css');
         $this->template->add_css('plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css');
 
         //page level plugin
         $this->template->add_js('plugins/select2/select2.min.js');
         $this->template->add_js('plugins/datatables/media/js/jquery.dataTables.min.js');
-        $this->template->add_js('plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js');
-        $this->template->add_js('plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js');
-        $this->template->add_js('plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js');
         $this->template->add_js('plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js');
-
-
-
-        //IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip 
-        $this->template->add_js('plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js');
-        $this->template->add_js('plugins/bootstrap/js/bootstrap.min.js');
-        $this->template->add_js('plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js');
-        $this->template->add_js('plugins/jquery-slimscroll/jquery.slimscroll.min.js');
-        $this->template->add_js('plugins/jquery.blockui.min.js');
-        $this->template->add_js('plugins/uniform/jquery.uniform.min.js');
-
-
         // page level script
         $this->template->add_js('scripts/app.js');
-        $this->template->add_js('scripts/table-advanced.js');
-        $this->template->add_js('scripts/employee/table_list.js');
+        $this->template->add_js('scripts/employee/employee-list.js');
 
         $this->data['js'] = $this->template->js;
         $this->data['css'] = $this->template->css;
@@ -50,27 +32,57 @@ class Employee extends CI_Controller {
         $this->data['active_tab'] = "employee";
         $this->data['page_content'] = "employee/index";
 
-        $this->data['query'] = $this->employee_model->employee_getall();
+        $this->data['employees'] = $this->employee_model->get_employee_list();
 
 
         $this->load->view('template', $this->data);
     }
 
+    public function employee_list_datatable() {
+        if ($this->input->is_ajax_request()) {
+            $aaData = array();
+            $resultSet = $this->employee_model->get_employee_list();
+            $total_records = count($resultSet);
+            $sql = $this->db->last_query();
+
+            $limit = isset($_POST['iDisplayLength']) ? $_POST['iDisplayLength'] : 5;
+            $start = isset($_POST['iDisplayStart']) ? $_POST['iDisplayStart'] : 0;
+            $sql .= " LIMIT $start , $limit ";
+            $resultSet = $this->db->query($sql)->result();
+            $singleListArray = array();
+            if ($resultSet) {
+                foreach ($resultSet as $row) {
+                    $singleListArray['DT_RowId'] = 'employee_' . $row->employee_id;
+                    $singleListArray['DT_RowClass'] = 'sp5';
+                    $singleListArray['employee_name'] = $row->employee_first_name . ' ' . $row->employee_middle_name . ' ' . $row->employee_last_name;
+                    $singleListArray['gender'] = $row->employee_gender;
+                    $singleListArray['birth_date'] = $row->birth_date;
+                    $singleListArray['mobile_number'] = $row->mobile_number;
+                    $singleListArray['email_id'] = $row->email_id;
+                    $singleListArray['action'] = " Edit | Delete";
+
+                    $aaData[] = $singleListArray;
+                }
+            }
+            $finalJsonArray['sEcho'] = $_POST['sEcho'] ? $_POST['sEcho'] : 1;
+            $finalJsonArray['iTotalRecords'] = $total_records;
+            $finalJsonArray['iTotalDisplayRecords'] = $total_records;
+            $finalJsonArray['aaData'] = $aaData;
+            echo json_encode($finalJsonArray);
+        } else {
+            redirect(base_url() . 'permissionDenied');
+        }
+    }
+
     public function add_employee() {
-
-
-
 
         //page level css
         $this->template->add_css('plugins/select2/select2.css');
         $this->template->add_css('plugins/bootstrap-datepicker/css/datepicker.css');
 
-
-
         //page level plugin
         $this->template->add_js('plugins/select2/select2.min.js');
         $this->template->add_js('plugins/bootstrap-datepicker/js/bootstrap-datepicker.js');
-
 
         //IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip 
         $this->template->add_js('plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js');
