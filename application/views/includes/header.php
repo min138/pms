@@ -55,6 +55,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
         <!-- END THEME STYLES -->
         <link rel="shortcut icon" href="favicon.ico"/>
+        <script>
+                var BASE_URL = "<?php echo base_url(); ?>";
+        </script>
     </head>
     <!-- END HEAD -->
     <!-- BEGIN BODY -->

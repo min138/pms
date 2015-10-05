@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
  * This model represents Employee data. It operates the following tables:
  * - Ingredient 
  *
- * @author	Minesh Mamrawala
+ * @author	Abhay Suchak
  */
 class Emp_model extends CI_Model {
 
@@ -37,7 +37,6 @@ class Emp_model extends CI_Model {
 
         $query=$this->db->get_where('employee_master',array('employee_id'=>$id));
 	return $query->result();
-        
         
     }
     function form_update($id,$param) {
