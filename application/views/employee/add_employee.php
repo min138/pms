@@ -13,85 +13,325 @@
                 <!-- BEGIN FORM-->
                 <form action="<?php echo base_url() . 'employee/add_employee'; ?>" class="form-horizontal" method="post">
                     <div class="form-body">
-                        <h3 class="form-section">Person Info</h3>
-                         <?php if($this->session->flashdata('error')!="") { ?>
-                        <div class="alert alert-danger">
-                            <strong>Error!</strong> <?php echo $this->session->flashdata('error'); ?>
-                        </div>
-                       <?php } ?>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">First Name</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" placeholder="First Name" value="<?php echo set_value('firstname'); ?>" name="firstname" id="firstname">
-                                        <?php echo form_error('firstname'); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Last Name</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" placeholder="Surname" value="<?php echo set_value('lastname'); ?>" name="lastname" id="lastname">
-                                        <?php echo form_error('lastname'); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div>
-                        <!--/row-->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Gender</label>
-                                    <div class="col-md-9">
-                                        <select class="form-control" name="gender" id="gender">
-                                            <option value="" selected>Choose</option>
-                                            <option value="M" <?php echo set_select('gender', 'M', FALSE); ?>>Male</option>
-                                            <option value="F" <?php echo set_select('gender', 'F', FALSE); ?>>Female</option>
-                                        </select>
-                                        <?php echo form_error('gender'); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Date of Birth</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control date date-picker" placeholder="dd/mm/yyyy" value="<?php echo set_value('dob'); ?>" name="dob" id="dob" data-date-format="dd/mm/yyyy">
-                                        <?php echo form_error('dob'); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div>
-                        <!--/row-->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Mobile</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" placeholder="Mobile" value="<?php echo set_value('mob'); ?>" name="mob" id="mob">
-                                        <?php echo form_error('mob'); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Email</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" placeholder="Email" value="<?php echo set_value('email'); ?>" name="email" id="email">
-                                        <?php echo form_error('email'); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div>
 
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-4">
+                                    <h3 class="form-section">Person Info</h3>
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Employee Code
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="employee_code" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    First Name
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="employee_first_name" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Middle Name
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="employee_middle_name" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Last Name
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="employee_last_name" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Birth Date
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="birth_date" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Mobile Number
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="mobile_number" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Gender
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="radio-list">
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="employee_gender" value="Male"> Male
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="employee_gender" value="Female"> Female
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <h3 class="form-section">General Info</h3>
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Image Upload
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="file" name="employee_photo" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Department
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <select name="department_id" class="form-control">
+                                                    <option>
+
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Designation
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <select name="designation_id" class="form-control">
+                                                    <option>
+
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label pull-left">
+                                                    Experience
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="input-group">
+                                                    <select name="experience_year" class="form-control">
+                                                        <option>
+
+                                                        </option>
+                                                    </select>
+                                                    <span class="input-group-addon">Months</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Experience
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="input-group">
+                                                    <select name="experience_month" class="form-control">
+                                                        <option>
+
+                                                        </option>
+                                                    </select>
+                                                    <span class="input-group-addon">Years</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Joining Date
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input name="join_date" type="text" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Email Address
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input name="email_id" type="text" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <h3 class="form-section">Address Info</h3>
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Block No
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Landmark
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Country
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    State
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    City
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Pin code
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Home Number
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
                         <!--/row-->
                     </div>
                     <div class="form-actions">
@@ -112,3 +352,5 @@
                 <!-- END SAMPLE FORM PORTLET-->
             </div>
         </div>
+    </div>
+</div>
