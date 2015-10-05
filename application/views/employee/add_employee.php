@@ -9,11 +9,12 @@
                 <div class="tools">
                 </div>
             </div>
+            <script src="<?php echo base_url() . "assets/scripts/upload/validation/submit.js" ?>"></script>
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                <form action="<?php echo base_url() . 'employee/add_employee'; ?>" class="form-horizontal" method="post">
+                <form action="<?php echo base_url() . 'employee/add_employee'; ?>" class="form-horizontal" id="myForm" method="post">
+                    <?php echo form_open('emp/add_employee', array('id' => 'frm')); ?>
                     <div class="form-body">
-
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
@@ -26,7 +27,8 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="employee_code" class="form-control"/>
+                                                <input type="text" name="employee_code" id="employee_code" value="<?php echo set_value('employee_code'); ?>" class="form-control"/>
+                                                <?php echo form_error('employee_code'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -363,26 +365,23 @@
                     </div>
                     <!--/row-->
 
-
-
-            </div>
-            <div class="form-actions">
-                <div class="row">
-                    <div class="col-md-6">
+                    <div class="form-actions">
                         <div class="row">
-                            <div class="col-md-offset-3 col-md-9">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                                <button type="button" class="btn btn-default">Cancel</button>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <button type="button" class="btn btn-default">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                    </div>
-                </div>
+                </form>
+                <!-- END SAMPLE FORM PORTLET-->
             </div>
-            </form>
-            <!-- END SAMPLE FORM PORTLET-->
         </div>
     </div>
-</div>
 </div>
