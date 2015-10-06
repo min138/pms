@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-md-12">
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -31,7 +30,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <button id="sample_editable_1_new" class="btn btn-success">
+                                <button id="sample_editable_1_new" onclick="location.href='<?php echo base_url();?>employee/add_employee'" class="btn btn-success">
                                     Add New <i class="fa fa-plus"></i>
                                 </button>
                             </div>

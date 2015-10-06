@@ -16,8 +16,7 @@
 
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                <form class="form-horizontal" id="myForm" method="post">
-
+                <form class="form-horizontal" action="<?php echo base_url() . 'employee_master/add_employee'; ?>" enctype="multipart/form-data" id="myForm" method="post">
                     <div class="form-body">
                         <div class="row">
                             <div class="col-sm-12">
@@ -31,8 +30,8 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="employee_code" id="employee_code" value="<?php echo set_value('employee_code'); ?>" class="form-control"/>
-                                                <?php echo form_error('username'); ?>
+                                                <input type="text" name="employee_code" value="<?php echo set_value('employee_code'); ?>" class="form-control"/>
+                                                <?php echo form_error('employee_code'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +44,8 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="employee_first_name" id="employee_first_name" class="form-control"/>
+                                                <input type="text" name="employee_first_name" value="<?php echo set_value('employee_first_name'); ?>" class="form-control"/>
+                                                <?php echo form_error('employee_first_name'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -58,7 +58,8 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="employee_middle_name" class="form-control"/>
+                                                <input type="text" name="employee_middle_name" value="<?php echo set_value('employee_middle_name'); ?>" class="form-control"/>
+                                                <?php echo form_error('employee_middle_name'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +72,8 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="employee_last_name" class="form-control"/>
+                                                <input type="text" name="employee_last_name" value="<?php echo set_value('employee_last_name'); ?>" class="form-control"/>
+                                                <?php echo form_error('employee_last_name'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -84,7 +86,8 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="birth_date" class="form-control"/>
+                                                <input type="text" name="birth_date" value="<?php echo set_value('birth_date'); ?>" class="form-control"/>
+                                                <?php echo form_error('birth_date'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -97,7 +100,8 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="mobile_number" class="form-control"/>
+                                                <input type="text" name="mobile_number" value="<?php echo set_value('mobile_number'); ?>" class="form-control"/>
+                                                <?php echo form_error('mobile_number'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -118,11 +122,9 @@
                                                         <input type="radio" name="employee_gender" value="Female"> Female
                                                     </label>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div class="col-sm-4">
@@ -131,7 +133,7 @@
                                         <div class="col-sm-12 form-group">
                                             <div class="col-sm-4">
                                                 <label class="control-label">
-                                                    Image Upload
+                                                    Upload Image
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
@@ -183,10 +185,21 @@
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="input-group">
-                                                    <select name="experience_year" class="form-control">
-                                                        <option>
-
-                                                        </option>
+                                                    <select name="experience_month" class="form-control">
+                                                        <option selected="" value=""></option>
+                                                        <option value="0">0</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
                                                     </select>
                                                     <span class="input-group-addon">Months</span>
                                                 </div>
@@ -203,10 +216,19 @@
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="input-group">
-                                                    <select name="experience_month" class="form-control">
-                                                        <option>
-
-                                                        </option>
+                                                    <select name="experience_year" class="form-control">
+                                                        <option selected="" value=""></option>
+                                                        <option value="0">0</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                     <span class="input-group-addon">Years</span>
                                                 </div>
@@ -251,7 +273,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" name="bno" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -264,7 +286,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" name="landmark" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -277,7 +299,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" name="conutry" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -290,7 +312,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" name="state" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -303,7 +325,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" name="city" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -316,7 +338,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" name="pincode" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -329,7 +351,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" name="homeno" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -338,7 +360,6 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h3 class="form-section">Employee Login Detail</h3>
-
                                         <div class="col-sm-6 form-group">
                                             <div class="col-sm-3">
                                                 <label class="control-label">
@@ -346,7 +367,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="text" name="employee_code" class="form-control"/>
+                                                <input type="text" name="login" class="form-control"/>
                                             </div>
                                         </div>
 
@@ -357,14 +378,12 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="text" name="employee_first_name" class="form-control"/>
+                                                <input type="password" name="password" class="form-control"/>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <!--/row-->
@@ -379,12 +398,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                            </div>
                         </div>
                     </div>
                 </form>
-                <!-- END SAMPLE FORM PORTLET-->
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@ class Emp_model extends CI_Model {
     function checkemployee($email) {
 
         $this->db->where('email_id', $email);
-        
+
         $this->db->limit(1);
         $query = $this->db->get('employee_master');
 
@@ -26,39 +26,40 @@ class Emp_model extends CI_Model {
             return false;
         }
     }
-    
+
     function emp_insert($param) {
-
-        $this->db->insert('employee_master', $param);
-        
-        
+        $query = $this->db->insert('employee_master', $param);
     }
-    function form_edit($id) {
 
+<<<<<<< Updated upstream
         $query=$this->db->get_where('employee_master',array('employee_id'=>$id));
 	return $query->result();
         
+=======
+    function form_edit($id) {
+        $query = $this->db->get_where('employee_master', array('employee_id' => $id));
+        return $query->result();
+>>>>>>> Stashed changes
     }
-    function form_update($id,$param) {
 
-        
-	$this->db->where('employee_id', $id);
+    function form_update($id, $param) {
+
+
+        $this->db->where('employee_id', $id);
         $this->db->update('employee_master', $param);
-        
-        
     }
+
     function form_delete($id) {
 
-        
-	$this->db->where('employee_id', $id);
+
+        $this->db->where('employee_id', $id);
         $this->db->delete('employee_master');
-        
-        
     }
-    public function employee_getall(){
-	
-	$query=$this->db->get('employee_master');
-	return $query->result();	
+
+    public function employee_getall() {
+
+        $query = $this->db->get('employee_master');
+        return $query->result();
     }
 
 }
