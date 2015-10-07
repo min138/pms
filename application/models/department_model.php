@@ -17,6 +17,12 @@ class department_model extends CI_Model {
     function department_insert($param) {
 
         $this->db->insert('department_master', $param);
+        return true;
+    }
+
+    function get_department_list() {
+        $query = $this->db->get('department_master');
+        return $query->result();
     }
 
     function update_department($id) {
@@ -25,11 +31,11 @@ class department_model extends CI_Model {
         return $query;
     }
 
-    function f_update_department($id, $department_name) {
+    function f_update_department($id,$department_name) {
 
 
         $data = array(
-            'department_name' => $department_name,
+            'department_name' => $department_name
             
         );
         $this->db->where('department_id', $id);

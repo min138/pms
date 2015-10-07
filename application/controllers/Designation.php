@@ -119,6 +119,7 @@ class Designation extends CI_Controller {
         $this->template->add_js('plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js');
 
 
+<<<<<<< Updated upstream
         //$this->template->add_js('scripts/designation.js');
         //IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip 
         $this->template->add_js('plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js');
@@ -128,6 +129,11 @@ class Designation extends CI_Controller {
         $this->template->add_js('plugins/jquery.blockui.min.js');
         $this->template->add_js('plugins/uniform/jquery.uniform.min.js');
 
+=======
+ $this->data['employees'] = $this->employee_model->get_employee_list();
+        $this->load->view('template', $this->data);
+    }
+>>>>>>> Stashed changes
 
         // page level script
         $this->template->add_js('scripts/app.js');

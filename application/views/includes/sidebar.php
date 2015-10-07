@@ -50,9 +50,15 @@ $class = strtolower($this->router->fetch_class());
                     </li>
 
                     
+<<<<<<< Updated upstream
                      
                 </ul>
                  <li class="start <?php echo $class == "department" ? "active" : ''; ?> ">
+=======
+                    
+                </ul>
+                  <li class="start <?php echo $class == "department" ? "active" : ''; ?> ">
+>>>>>>> Stashed changes
                 <a href="<?php echo base_url('department'); ?>">
                     <i class="icon-grid"></i>
                     <span class="title">Department</span>
@@ -62,12 +68,19 @@ $class = strtolower($this->router->fetch_class());
             
             <li class="start <?php echo $class == "designation" ? "active" : ''; ?> ">
                 <a href="<?php echo base_url('designation'); ?>">
+<<<<<<< Updated upstream
                     <i class="icon-grid"></i>
+=======
+                    <i class="icon-plus"></i>
+>>>>>>> Stashed changes
                     <span class="title">Designation</span>
                     <span class="selected"></span>
                 </a>
             </li>
+<<<<<<< Updated upstream
             
+=======
+>>>>>>> Stashed changes
             </li>
          </ul>
         <!-- END SIDEBAR MENU -->
