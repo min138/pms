@@ -16,38 +16,57 @@ class Designation_model extends CI_Model {
     function insert_designation($param) {
 
         $this->db->insert('designation_master', $param);
+        return true;
     }
 
-    function form_edit($id) {
-
-        $query = $this->db->get_where('tbl_employee', array('emp_id' => $id));
+    function designation_edit($id) {
+        //$this->db->join('department_master','department_master.department_id = designation_master.department_id');
+        $query = $this->db->get_where('designation_master', array('designation_id' => $id));
         return $query->result();
     }
-    
+
+    function get_designation_by_id($id) {
+        //$this->db->join('department_master','department_master.department_id = designation_master.department_id');
+        $query = $this->db->get_where('designation_master', array('designation_id' => $id));
+        return $query->result();
+    }
+
     function getPosts() {
         $this->db->select("department_id,department_name");
         $query = $this->db->get('department_master');
         return $query->result();
     }
 
-    function form_update($id, $param) {
+    function designation_update($id, $param) {
 
 
-        $this->db->where('emp_id', $id);
-        $this->db->update('tbl_employee', $param);
+        $this->db->where('designation_id', $id);
+        $this->db->update('designation_master', $param);
     }
 
-    function form_delete($id) {
-
-
-        $this->db->where('emp_id', $id);
-        $this->db->delete('tbl_employee');
+    function get_department_id_by_designation($id) {
+        $this->db->select('department_id');
+        $this->db->where('designation_id', $id);
+        $result = $this->db->get('designation_master')->first_row();
+        return (isset($result->department_id) && !empty($result->department_id)) ? $result->department_id : "";
     }
 
-    public function employee_getall() {
+    function get_department_name($department_id) {
+        $this->db->select('department_name');
+        $this->db->where('department_id', $department_id);
+        $result = $this->db->get('department_master')->first_row();
+        return (isset($result->department_name) && !empty($result->department_name)) ? $result->department_name : "";
+    }
 
-        $query = $this->db->get('tbl_employee');
+    function get_designtion_list() {
+        $this->db->join('department_master', 'department_master.department_id = designation_master.department_id');
+        $query = $this->db->get('designation_master');
         return $query->result();
+    }
+
+    function change_status_model($designation_id, $data) {
+        $this->db->where('designation_id', $designation_id);
+        $this->db->update('designation_master', $data);
     }
 
 }

@@ -50,14 +50,24 @@ $class = strtolower($this->router->fetch_class());
                     </li>
 
                     
-                      <li class="start <?php echo $class == "department" ? "active" : ''; ?> ">
-                <a href="<?php echo base_url('department/add_department'); ?>">
+                     
+                </ul>
+                 <li class="start <?php echo $class == "department" ? "active" : ''; ?> ">
+                <a href="<?php echo base_url('department'); ?>">
                     <i class="icon-grid"></i>
                     <span class="title">Department</span>
                     <span class="selected"></span>
                 </a>
             </li>
-                </ul>
+            
+            <li class="start <?php echo $class == "designation" ? "active" : ''; ?> ">
+                <a href="<?php echo base_url('designation'); ?>">
+                    <i class="icon-grid"></i>
+                    <span class="title">Designation</span>
+                    <span class="selected"></span>
+                </a>
+            </li>
+            
             </li>
          </ul>
         <!-- END SIDEBAR MENU -->

@@ -112,7 +112,7 @@
                         }
                         ?>
                     </tbody>
-                </table>
+                   </table>
             </div>
         </div>
         <!-- END EXAMPLE TABLE PORTLET-->
