@@ -4,13 +4,11 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN EXAMPLE TABLE PORTLET-->
-                <?php if ($this->session->flashdata('success') != "") { ?>
-                    <div class="alert alert-success">
-                        <strong>Success!</strong> <?php echo $this->session->flashdata('success'); ?>
+                
+                    <div id="alert_msg">
+                        
                     </div>
-                    <?php
-                }
-                ?>
+                    
 
                 <div class="portlet">
                     <div class="portlet-title">
