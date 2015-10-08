@@ -25,7 +25,8 @@ $(document).ready(function () {
                         data.leave_data.leave_category_id]
                             );
                     $("#add_leave_type_form")[0].reset();
-                    $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> '+data.leave_data.leave_name+' Successfully Added</div>').hide(7000);
+                    $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> '+data.leave_data.leave_name+' Successfully Added</div>');
+                    $(".alert-success").hide(3000);
                 }
             }
 
@@ -62,7 +63,7 @@ $(document).ready(function () {
         ] // set first column as a default sort by asc
     });
     
-     $(".alert-success").hide(3000);
+    
 
 });
 
@@ -114,7 +115,8 @@ $("#update_leave_form").submit(function (e) {
                 $("#myModal").modal('hide');
                 $("#update_leave_form")[0].reset();
                 $("#"+data.leave_data.leave_category_id).html(data.leave_data.leave_name);
-                $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> '+data.leave_data.leave_name+' Successfully Modified</div>').hide(7000);
+                $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> '+data.leave_data.leave_name+' Successfully Modified</div>');
+                $(".alert-success").hide(3000);
             }
             
         }
