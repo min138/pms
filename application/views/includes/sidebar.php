@@ -52,6 +52,29 @@ $class = strtolower($this->router->fetch_class());
                 </ul>
 
             </li>
+            <li class="<?php echo ($class == "employee" || $class == "designation") ? "active" : ''; ?>">
+                <a href="javascript:;">
+                    <i class="icon-users"></i>
+                    <span class="title">Employee</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="<?php echo $active_tab == "employee" ? "active" : ''; ?>">
+                        <a href="<?php echo base_url('employee'); ?>">
+                            <i class="icon-grid"></i>
+                            Employee List
+                        </a>
+                    </li>
+                    <li class="start <?php echo $active_tab == "add-designtion" ? "active" : ''; ?> ">
+                        <a href="<?php echo base_url('designation'); ?>">
+                            <i class="icon-grid"></i>
+                            <span class="title">Designation</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>
