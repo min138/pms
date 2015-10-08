@@ -55,7 +55,7 @@ class Department extends CI_Controller {
         if (!$this->input->is_ajax_request()) {
 
             //page level css
-            $this->template->add_css('plugins/select2/select2.css');
+           
             $this->template->add_css('plugins/bootstrap-datepicker/css/datepicker.css');
 
 
