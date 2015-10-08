@@ -12,14 +12,18 @@
         </div>
     </div>
     <div class="portlet-body form">
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" action="<?php echo base_url() . 'holiday_master'; ?>" role="form" method="post"> 
+            <?php echo $this->session->flashdata('error'); ?>
+            <?php echo $this->session->flashdata('success'); ?>
             <div class="form-body">
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Text</label>
+                    <label class="col-md-3 control-label">Holiday Name</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" placeholder="Enter text">
-                        <span class="help-block">
-                            A block of help text. </span>
+                        <input type="text" class="form-control"  name="holiday_name" value="<?php echo set_value('holiday_name'); ?>" placeholder="Enter text">
+                        <?php echo form_error('holiday_name'); ?>
+
+<!--                        <span class="help-block">
+    A block of help text. </span>-->
                     </div>
                 </div>
 
@@ -30,9 +34,10 @@
 
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Textarea</label>
+                    <label class="col-md-3 control-label">Description</label>
                     <div class="col-md-9">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" name="holiday_description" value="<?php echo set_value('holiday_description'); ?>" rows="3"></textarea>
+                        <?php echo form_error('holiday_description'); ?>
                     </div>
                 </div>
 
@@ -44,32 +49,54 @@
                     <div class="col-md-9">
                         <div class="radio-list">
                             <label class="radio-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios25" value="option1" checked> Option 1 </label>
+                                <input type="radio" name="singleholiday" id="s1" value="0" > Single </label>
                             <label class="radio-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios26" value="option2" checked> Option 2 </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios27" value="option3" disabled> Disabled </label>
+                                <input type="radio" name="singleholiday" id="v1" value="1" > Vacation </label>
+                          
                         </div>
+                    </div>
+                </div>
+
+                <div class="form-group" id="single">
+                    <label class="control-label col-md-3">Default Datepicker </label>
+                    <div class="col-md-9">
+                        <input class="form-control form-control-inline input-medium date-picker" size="16" type="text" value=""/>
+                        <span class="help-block">
+                            Select date </span>
                     </div>
                 </div>
             </div>
 
-
-            <div class="form-group">
-                <label class="control-label col-md-3">Default Datepicker</label>
-                <div class="col-md-3">
-                    <input class="form-control form-control-inline input-medium date-picker" size="16" type="text" value=""/>
-                    <span class="help-block">
-                        Select date </span>
+            <div class="form-group" id="vacation" style="display: none">
+                <label class="control-label col-md-3">Date Range</label>
+                <div class="col-md-4">
+                    <div class="input-group input-large">
+                        <input type="text" class="form-control date-picker" name="date_from" value="<?php echo set_value('date_from'); ?>" >
+                        <?php echo form_error('date_from'); ?>
+                        <span class="input-group-addon">
+                            to </span>
+                        <input type="text" class="form-control date-picker" name="date_to" value="<?php echo set_value('date_to'); ?>">
+                        <?php echo form_error('date_to'); ?>
+                    </div>
+                    <!-- /input-group -->
+<!--                    <span class="help-block">
+                        Select date range </span>-->
                 </div>
-                <div class="form-actions">
-                    <div class="row">
-                        <div class="col-md-offset-3 col-md-9">
-                            <button type="submit" class="btn btn-success">Submit</button>
-                            <button type="button" class="btn btn-default">Cancel</button>
-                        </div>
+            </div>
+
+
+
+
+
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="button" class="btn btn-default">Cancel</button>
                     </div>
                 </div>
+            </div>
         </form>
     </div>
+</div>
 </div>
