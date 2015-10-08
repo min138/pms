@@ -11,7 +11,7 @@ class Employee extends CI_Controller {
 
     public function index() {
 
-        //page level css
+        //page level css test
         $this->template->add_css('plugins/select2/select2.css');
         $this->template->add_css('plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css');
 
