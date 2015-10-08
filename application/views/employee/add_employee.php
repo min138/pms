@@ -350,28 +350,54 @@
 
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h3 class="form-section">Employee Login Detail</h3>
-                                        <div class="col-sm-6 form-group">
-                                            <div class="col-sm-3">
-                                                <label class="control-label">
-                                                    Employee Login ID
-                                                </label>
+                                        <div class="col-sm-6">
+                                            <h3 class="form-section">Employee Login Detail</h3>
+                                            <div class="row">
+                                                <div class="col-sm-12 form-group">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">
+                                                            Employee Login ID
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" name="login" class="form-control"/>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <input type="text" name="login" class="form-control"/>
+                                            <div class="row">
+                                                <div class="col-sm-12 form-group">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">
+                                                            Password
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="password" name="password" class="form-control"/>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6 form-group">
-                                            <div class="col-sm-3">
-                                                <label class="control-label">
-                                                    Password
-                                                </label>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="password" name="password" class="form-control"/>
-                                            </div>
+                                        <div class="col-sm-6">
+                                            <h3 class="form-section">Add Leave Details</h3>
+                                            <?php foreach ($leave as $post) { ?>
+                                                <div class="row">
+                                                    <div class="col-sm-12 form-group">
+                                                        <div class="col-sm-3">
+                                                            <label class="control-label">
+                                                                <?php echo $post->leave_name; ?>
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <input type="hidden" name="leave_type_id[]" value="<?php echo $post->leave_category_id; ?>">
+                                                            <input type="text" name="leave[]" class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php } ?> 
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

@@ -34,6 +34,10 @@ class Employee_model extends CI_Model {
         return $insert_id;
     }
 
+    function leave_insert($table_name, $param) {
+        $this->db->insert($table_name, $param);
+    }
+
     function emp_update($table_name, $param, $id, $field) {
         $this->db->where($field, $id);
         $this->db->update($table_name, $param);
@@ -47,6 +51,13 @@ class Employee_model extends CI_Model {
     function get_employee_list() {
         $this->db->join('designation_master', 'designation_master.designation_id = employee_master.designation_id');
         $query = $this->db->get('employee_master');
+        return $query->result();
+    }
+
+    function leave_type() {
+        $this->db->select("leave_category_id,leave_name");
+        $this->db->from('leave_category_master');
+        $query = $this->db->get();
         return $query->result();
     }
 

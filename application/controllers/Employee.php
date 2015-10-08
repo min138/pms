@@ -58,6 +58,8 @@ class Employee extends CI_Controller {
         $this->data['active_tab'] = "add-employee";
         $this->data['page_content'] = "employee/add_employee";
 
+        $this->data['leave'] = $this->employee_model->leave_type(); // calling Post model method getPosts()
+//        $this->load->view('template', $this->data);
 //        exit('No direct script access allowed');
 
         $this->form_validation->set_rules('employee_code', 'Employee Code', 'trim|required');
@@ -103,6 +105,7 @@ class Employee extends CI_Controller {
 
             $login = $this->input->post('login');
             $password = $this->input->post('password');
+
 
             $dir = './assets/uploads';
             if (!file_exists($dir) && !is_dir($dir)) {
@@ -169,6 +172,23 @@ class Employee extends CI_Controller {
                 'modified_date' => date('Y-m-d H:i:s'),
                 'status' => 'active'
             );
+
+            $leave_num = count($this->input->post('leave'));
+            $leave = $this->input->post('leave');
+            $leave_type_id = $this->input->post('leave_type_id');
+
+
+            for ($i = 0; $i < $leave_num; $i++) {
+
+                if ($leave[$i] != '') {
+                    $leave_param = array(
+                        'employee_id' => $emp_id,
+                        'leave_type_id' => $leave_type_id[$i],
+                        'allowed_days' => $leave[$i]
+                    );
+                    $this->employee_model->emp_leave('employee_leave', $leave_param);
+                }
+            }
             //Transfering data to Model
 
             $login_id = $this->employee_model->emp_insert('login_master', $login_param);
@@ -176,8 +196,6 @@ class Employee extends CI_Controller {
             $this->session->set_flashdata('success', 'Successfully Saved Employee.');
             redirect(base_url('employee'));
         }
-
-
     }
 
     public function edit_employee($id) {
@@ -211,7 +229,7 @@ class Employee extends CI_Controller {
             'id' => $this->data['employee']->designation_id,
             'text' => $this->data['employee']->designation_name
         ));
-        $dept_id=$this->data['employee']->department_id;
+        $dept_id = $this->data['employee']->department_id;
         $script = "$(document).ready(function (){"
                 . "$('#department_id').select2('data', $json_department_data);"
                 . "designation_list($dept_id);"
@@ -333,7 +351,6 @@ class Employee extends CI_Controller {
             $this->employee_model->emp_update('employee_master', $emp_param, $id, 'employee_id');
 
             $addr_param = array(
-                
                 'block_no' => $bno,
                 'area' => $landmark,
                 'country' => $country,
@@ -349,7 +366,6 @@ class Employee extends CI_Controller {
             $this->employee_model->emp_update('address_master', $addr_param, $id, 'address_employee_id');
 
             $login_param = array(
-                
                 'company_email_id' => $login,
                 'password' => $password,
                 'created_date' => date('Y-m-d H:i:s'),
@@ -447,23 +463,23 @@ class Employee extends CI_Controller {
         $this->employee_model->change_status_model($employee_id, $data);
         echo $status;
     }
-    
+
     public function view_employee_profile($id) {
 
         //page level css
         $this->template->add_css('plugins/bootstrap-fileupload/bootstrap-fileupload.css');
-        
-        
+
+
 
         //page level plugin
         $this->template->add_js('plugins/bootstrap-fileupload/bootstrap-fileupload.js');
-        
+
         //Page Css
         $this->template->add_css('css/pages/profile.css');
-        
+
         //Page Script
         $this->template->add_js('scripts/app.js');
-        
+
 
         $this->data['title'] = "Employee";
         $this->data['page_title'] = "View Employee";
@@ -472,14 +488,13 @@ class Employee extends CI_Controller {
 
         $this->data['employee'] = $this->employee_model->get_employee_data($id);
 
-        
+
 
         $this->data['js'] = $this->template->js;
         $this->data['css'] = $this->template->css;
 
         //Field validation failed.  User redirected to login page
         $this->load->view('template', $this->data);
-        
     }
 
 }
