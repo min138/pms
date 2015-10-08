@@ -48,6 +48,7 @@ class Employee extends CI_Controller {
         //Page Script
         $this->template->add_js('scripts/app.js');
         $this->template->add_js('scripts/employee/employee-function.js');
+        $this->template->add_js('scripts/employee/jquery.validate.js');
 
         $this->data['js'] = $this->template->js;
         $this->data['css'] = $this->template->css;
@@ -60,11 +61,17 @@ class Employee extends CI_Controller {
 //        exit('No direct script access allowed');
 
         $this->form_validation->set_rules('employee_code', 'Employee Code', 'trim|required');
-        $this->form_validation->set_rules('employee_first_name', 'First Name', 'trim|required');
-        $this->form_validation->set_rules('employee_middle_name', 'Middle Name', 'trim|required');
-        $this->form_validation->set_rules('employee_last_name', 'Last Name', 'trim|required');
+        $this->form_validation->set_rules('employee_first_name', 'First Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('employee_middle_name', 'Middle Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('employee_last_name', 'Last Name', 'trim|required|alpha');
         $this->form_validation->set_rules('birth_date', 'Birth Date', 'trim|required');
-        $this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required');
+        $this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|numeric');
+        $this->form_validation->set_rules('department_id', 'Department', 'trim|required');
+        $this->form_validation->set_rules('designation_id', 'Designation', 'trim|required');
+        $this->form_validation->set_rules('join_date', 'Joining Date', 'trim|required');
+        $this->form_validation->set_rules('email_id', 'Email Id', 'trim|required');
+        $this->form_validation->set_rules('login', 'Username', 'trim|required');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == FALSE) {
 //Field validation failed.  User redirected to login page
@@ -170,7 +177,7 @@ class Employee extends CI_Controller {
             redirect(base_url('employee'));
         }
 
-//redirect(base_url('employee_master'));
+
     }
 
     public function edit_employee($id) {
@@ -186,6 +193,7 @@ class Employee extends CI_Controller {
         //Page Script
         $this->template->add_js('scripts/app.js');
         $this->template->add_js('scripts/employee/employee-function.js');
+        $this->template->add_js('scripts/employee/jquery.validate.js');
 
         $this->data['title'] = "Employee";
         $this->data['page_title'] = "Edit Employee";
@@ -203,10 +211,11 @@ class Employee extends CI_Controller {
             'id' => $this->data['employee']->designation_id,
             'text' => $this->data['employee']->designation_name
         ));
-
+        $dept_id=$this->data['employee']->department_id;
         $script = "$(document).ready(function (){"
-                . "$('#department-id').select2('data', $json_department_data);"
-                . "$('#designation-id').select2('data', $json_designation_data);"
+                . "$('#department_id').select2('data', $json_department_data);"
+                . "designation_list($dept_id);"
+                . "$('#designation_id').select2('data', $json_designation_data);"
                 . "});";
 
         $this->template->add_js($script, "embed");
@@ -215,11 +224,17 @@ class Employee extends CI_Controller {
         $this->data['css'] = $this->template->css;
 
         $this->form_validation->set_rules('employee_code', 'Employee Code', 'trim|required');
-        $this->form_validation->set_rules('employee_first_name', 'First Name', 'trim|required');
-        $this->form_validation->set_rules('employee_middle_name', 'Middle Name', 'trim|required');
-        $this->form_validation->set_rules('employee_last_name', 'Last Name', 'trim|required');
+        $this->form_validation->set_rules('employee_first_name', 'First Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('employee_middle_name', 'Middle Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('employee_last_name', 'Last Name', 'trim|required|alpha');
         $this->form_validation->set_rules('birth_date', 'Birth Date', 'trim|required');
-        $this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required');
+        $this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|numeric');
+        $this->form_validation->set_rules('department_id', 'Department', 'trim|required');
+        $this->form_validation->set_rules('designation_id', 'Designation', 'trim|required');
+        $this->form_validation->set_rules('join_date', 'Joining Date', 'trim|required');
+        $this->form_validation->set_rules('email_id', 'Email Id', 'trim|required');
+        $this->form_validation->set_rules('login', 'Username', 'trim|required');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == FALSE) {
             //Field validation failed.  User redirected to login page

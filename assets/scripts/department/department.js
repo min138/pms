@@ -137,7 +137,7 @@ $("#update_department_form").submit(function (e) {
 
             if (data.status == "true") {
                 $("#myModal").modal('hide');
-                $("#department_form")[0].reset();
+                $("#update_department_form")[0].reset();
 
             }
         }

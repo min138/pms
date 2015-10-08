@@ -29,15 +29,13 @@
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <div class="table-toolbar">
-                            <a class="btn btn-primary btn-md" data-toggle="modal" data-target="#add_department">
-                                Add Department
-                            </a>
-                        </div>
+                       
                         <div class="table-toolbar">
                             <div class="row">
                                 <div class="col-md-6">
-
+                                    <a class="btn btn-primary btn-md" data-toggle="modal" data-target="#add_leave_type">
+                                        Add Leave Type
+                                    </a>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
@@ -61,41 +59,33 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-striped table-bordered table-hover" id="department_list">
+                        <table class="table table-striped table-bordered table-hover" id="leave_type_list">
                             <thead>
                                 <tr>
                                     <th>
-                                        Department Name
+                                        Leave Name
                                     </th>
 
                                     <th class="hidden-xs">
                                         Action
                                     </th>
-                                    <th class="hidden-xs">
-                                        Status
-                                    </th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                if (isset($department) && !empty($department)) {
-                                    foreach ($department as $row) {
+                                if (isset($leave) && !empty($leave)) {
+                                    foreach ($leave as $row) {
                                         ?>
                                         <tr class="odd gradeX">
-                                            <td>
-                                                <?php echo $row->department_name; ?>
+                                            <td id="<?php echo $row->leave_category_id; ?>">
+                                                <?php echo $row->leave_name; ?>
                                             </td>
 
                                             <td>
-                                                <a class="btn btn-primary btn-sm update-department" data-department_id="<?php echo $row->department_id ?>" data-toggle="modal" data-target="#myModal">
+                                                <a class="btn btn-primary btn-sm update-leave" data-leave_category_id="<?php echo $row->leave_category_id ?>" data-toggle="modal" data-target="#myModal">
                                                     edit
                                                 </a>
-                                            </td>
-
-
-
-                                            <td>
-                                                <span class="label label-sm label-<?php echo ($row->status == "active") ? "success" : "danger"; ?> status" style="cursor: pointer;" data-department_id="<?php echo $row->department_id; ?>" data-status="<?php echo $row->status; ?>"><?php echo $row->status; ?> </span>
                                             </td>
                                         </tr>
                                         <?php
@@ -117,13 +107,13 @@
 
 <!--Start Add With Model-->
 
-<div class="modal fade" id="add_department" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="add_leave_type" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-    <form id="department_add_from" method="post">
+    <form id="add_leave_type_form" method="post">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Department</h4>
+                <h4 class="modal-title" id="myModalLabel">Leave Type</h4>
             </div>
             <div id="ajax-respose"></div>
 
@@ -132,11 +122,11 @@
                     <div class="col-sm-12 form-group">
                         <div class="col-sm-4">
                             <label class="control-label">
-                                Department Name
+                                Leave Name
                             </label>
                         </div>
                         <div class="col-sm-8">
-                            <input class='form-control col-lg-5 itemSearch' name="department_name" id="department_name" type='text' placeholder='Select Keywords' />
+                            <input class='form-control col-lg-5 itemSearch' name="leave_name" id="leave_name" type='text' placeholder='Leave Name' />
                         </div>
                     </div>
                 </div>
@@ -156,11 +146,11 @@
 
 <!--Start Update Model-->
 <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <form id="update_department_form" method="post">
+    <form id="update_leave_form" method="post">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Department</h4>
+                <h4 class="modal-title" id="myModalLabel">Leave Type</h4>
             </div>
             <div id="error_update">
 
@@ -171,15 +161,15 @@
                 <div class="col-sm-12 form-group">
                     <div class="col-sm-4">
                         <label class="control-label">
-                            Department Name
+                            Leave Name
                         </label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" id="update_department_name" name="update_department_name" class="form-control"/>
+                        <input type="text" id="update_leave_name" name="update_leave_name" class="form-control"/>
                     </div>
                     <div class="col-sm-8">
 
-                        <input type="hidden" id="update_department_id_hidden" name="update_department_id_hidden" class="form-control"/>
+                        <input type="hidden" id="update_leave_id_hidden" name="update_leave_id_hidden" class="form-control"/>
                     </div>
 
 

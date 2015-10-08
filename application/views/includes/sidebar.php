@@ -29,7 +29,7 @@ $class = strtolower($this->router->fetch_class());
                     <span class="selected"></span>
                 </a>
             </li>
-            <li class="<?php echo ($class == "employee" || $class == "designation") ? "active" : ''; ?>">
+            <li class="<?php echo ($class == "employee" || $class == "designation" || $class == "department" || $class == "leave") ? "active" : ''; ?>">
                 <a href="javascript:;">
                     <i class="icon-users"></i>
                     <span class="title">Employee</span>
@@ -53,6 +53,13 @@ $class = strtolower($this->router->fetch_class());
                         <a href="<?php echo base_url('designation'); ?>">
                             <i class="icon-grid"></i>
                             <span class="title">Designation</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                    <li class="start <?php echo $active_tab == "add-leave" ? "active" : ''; ?> ">
+                        <a href="<?php echo base_url('leave'); ?>">
+                            <i class="icon-grid"></i>
+                            <span class="title">Leave Type</span>
                             <span class="selected"></span>
                         </a>
                     </li>

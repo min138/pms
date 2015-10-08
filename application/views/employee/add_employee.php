@@ -151,7 +151,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input class='form-control col-lg-5 itemSearch' name="department_id" id="department-id" type='text' placeholder='Select a Department' onchange="designation_list(this.value);" />
+                                                <input class='form-control col-lg-5 itemSearch' name="department_id" id="department_id" type='text' placeholder='Select a Department' onchange="designation_list(this.value);" />
                                             </div>
                                         </div>
                                     </div>
@@ -164,7 +164,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input class='form-control col-lg-5 itemSearch' name="designation_id" id="designation-id" type='text' placeholder='Select a Designation' />
+                                                <input class='form-control col-lg-5 itemSearch' name="designation_id" id="designation_id" type='text' placeholder='Select a Designation' />
                                             </div>
                                         </div>
                                     </div>
