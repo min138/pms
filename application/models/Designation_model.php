@@ -17,7 +17,7 @@ class Designation_model extends CI_Model {
 
         $this->db->insert('designation_master', $param);
         $insert_id = $this->db->insert_id();
-    return $insert_id;
+        return $insert_id;
         
     }
 

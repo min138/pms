@@ -104,7 +104,7 @@
                     </div>
                     <div class="portlet-body">
                         <div class="table-toolbar">
-                            <a class="btn btn-primary btn-md" data-toggle="modal" data-target="#add_designation">
+                            <a class="btn btn-primary btn-md add-designation" data-toggle="modal" data-target="#add_designation">
                                 Add Designation
                             </a>
                         </div>

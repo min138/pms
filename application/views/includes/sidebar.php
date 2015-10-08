@@ -50,7 +50,6 @@ $class = strtolower($this->router->fetch_class());
                         </a>
                     </li>
                 </ul>
-
             </li>
             
         </ul>

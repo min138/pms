@@ -33,12 +33,14 @@ $(document).ready(function () {
     });
 
     // Automatically add a first row of data
-
+$(document).on("click", ".add-designation", function (e) {
+    $("#error_response").html("");
+});
 
     $("#designation_form").submit(function (e) {
         e.preventDefault();
         dataString = $("#designation_form").serialize();
-
+        
         $.ajax({
             type: "POST",
             url: BASE_URL + "designation/add_designation",
@@ -47,16 +49,14 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#error_response").html(data.response);
-              
+
                 if (data.status == "true") {
-                     $("#add_designation").modal('hide');
+                    $("#add_designation").modal('hide');
                     $('#designation_view').dataTable().fnAddData([
                         data.designation_data.department_id,
-                        
                         data.designation_data.designation_name,
-                        
                         data.designation_data.designation_id,
-                        "Active"]);
+                        data.designation_data.status]);
                     $("#designation_form")[0].reset();
                     $('#department_name').select2('data', "");
 
@@ -104,7 +104,7 @@ $(document).ready(function () {
     // Staus 
 
 
-    $(".status").on("click", function (e) {
+    $(document).on("click", ".status", function (e) {
         var current_object = $(this);
         var designation_id = current_object.data("designation_id");
         var status = current_object.data("status");
@@ -125,7 +125,7 @@ $(document).ready(function () {
         });
     });
 
-    $(".update-designation").on("click", function (e) {
+    $(document).on("click", ".update-designation", function (e) {
         var current_object = $(this);
         var designation_id = current_object.data("designation_id");
         $("#update_designation_form")[0].reset();
@@ -138,13 +138,13 @@ $(document).ready(function () {
                 designation_id: designation_id,
             },
             success: function (data) {
+                $("#error_update").html("");
                 $('#update_department_name').select2('data', data.department_name);
                 $("#update_designation_name").val(data.dname);
                 $("#update_designation_id_hidden").val(data.update_designation_id_hidden);
             }
         });
     });
-
 
     $("#update_department_name").select2({
         placeholder: 'Select a Department',
@@ -189,8 +189,8 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#error_update").html(data.response_update);
-               if (data.status == "true") {
-                   $("#myModal").modal('hide');
+                if (data.status == "true") {
+                    $("#myModal").modal('hide');
                     $("#designation_form")[0].reset();
                     $('#department_name').select2('data', "");
 

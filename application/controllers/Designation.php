@@ -92,9 +92,9 @@ class Designation extends CI_Controller {
 
                 $param1 = array(
                     'department_id' => $this->data['department_name'],
-                    'designation_id' => '<a class="btn btn-primary btn-sm update-designation" data-designation_id="' . $desig_id . '" data-toggle="modal" data-target="#myModal">Edit</a>',
+                    'designation_id' => '<a class="btn btn-primary btn-sm update-designation" data-designation_id="' . $desig_id . '" data-toggle="modal" data-target="#myModal">edit</a>',
                     'designation_name' => $designation,
-                    'status' => 'Active',
+                    'status' => '<span class="label label-sm label-success status" data-status="active" data-designation_id="' . $desig_id . '" style="cursor: pointer;">active </span>',
                 );
                 //Transfering data to Model
                 if ($desig_id != "") {
