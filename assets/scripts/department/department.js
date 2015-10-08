@@ -17,13 +17,13 @@ $(document).ready(function () {
 
                 if (data.status == "true")
                 {
-                       $("#ajax-respose").html("");
+                    $("#ajax-respose").html("");
                     $("#add_department").modal('hide');
                     $('#department_list').dataTable().fnAddData([
                         data.department_data.department_name,
                         data.department_data.department_id,
                         data.department_data.status]
-                        );
+                            );
                     $("#department_add_from")[0].reset();
 
                 }
@@ -91,7 +91,7 @@ $(document).on("click", ".status", function (e) {
 
 
 
-    $(document).on("click", ".update-department", function (e) {
+$(document).on("click", ".update-department", function (e) {
 
     var current_object = $(this);
     var department_id = current_object.data("department_id");
@@ -112,6 +112,10 @@ $(document).on("click", ".status", function (e) {
     });
 });
 
+
+$(document).on("click", ".add-department", function (e) {
+    $("#ajax-respose").html("");
+});
 
 
 

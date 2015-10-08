@@ -30,7 +30,7 @@
                     </div>
                     <div class="portlet-body">
                         <div class="table-toolbar">
-                            <a class="btn btn-primary btn-md" data-toggle="modal" data-target="#add_department">
+                            <a class="btn btn-primary btn-md add-department" data-toggle="modal" data-target="#add_department">
                                 Add Department
                             </a>
                         </div>
