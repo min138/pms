@@ -17,7 +17,8 @@ class department_model extends CI_Model {
     function department_insert($param) {
 
         $this->db->insert('department_master', $param);
-        return true;
+         $insert_id = $this->db->insert_id();
+        return $insert_id;
     }
 
     function get_department_list() {
@@ -25,29 +26,28 @@ class department_model extends CI_Model {
         return $query->result();
     }
 
-    function update_department($id) {
-        $this->db->where('department_id', $id);
-        $query = $this->db->get('department_master')->result();
-        return $query;
+    function change_status_model($department_id, $data) {
+        $this->db->where('department_id', $department_id);
+        $this->db->update('department_master', $data);
     }
 
-    function f_update_department($id,$department_name) {
+//    function get_department_name($department_id) {
+//        $this->db->select('department_name');
+//        $this->db->where('department_id', $department_id);
+//        $result = $this->db->get('department_master')->first_row();
+//        return (isset($result->department_name) && !empty($result->department_name)) ? $result->department_name : "";
+//    }
+    function department_update($id, $param) {
 
 
-        $data = array(
-            'department_name' => $department_name
-            
-        );
         $this->db->where('department_id', $id);
-        $query = $this->db->update('department_master', $data);
-
-
-
-        if ($query) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+        $this->db->update('department_master', $param);
+    }
+    
+     function get_department_by_id($id) {
+        //$this->db->join('department_master','department_master.department_id = designation_master.department_id');
+        $query = $this->db->get_where('department_master', array('department_id' => $id));
+        return $query->first_row();
     }
 
 }

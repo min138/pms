@@ -1,8 +1,8 @@
-
+<!--
 <div class="row">
     <div class="col-md-6">
         <div id="ajax-respose"></div> 
-        <!-- BEGIN SAMPLE FORM PORTLET-->
+         BEGIN SAMPLE FORM PORTLET
         <div class="portlet">
             <div class="portlet-title">
                 <div class="caption">
@@ -11,7 +11,7 @@
 
             </div>
             <div class="portlet-body form">
-                <!-- BEGIN FORM-->
+                 BEGIN FORM
                 <form  id="department_id" method="post">
                     <div class="form-body">
 
@@ -54,7 +54,7 @@
 
                         </div>
                     </div>
-                    <!--/row-->
+                    /row
 
 
 
@@ -80,15 +80,15 @@
                 
                  
             </div>
-            <!-- END SAMPLE FORM PORTLET-->
+             END SAMPLE FORM PORTLET
 
 
 
 
         </div>
-    </div>
-
-    <div class="col-md-6">
+    </div>-->
+<div class="row">
+    <div class="col-md-12">
 
         <div class="row">
             <div class="col-md-12">
@@ -119,9 +119,14 @@
                     </div>
                     <div class="portlet-body">
                         <div class="table-toolbar">
+                            <a class="btn btn-primary btn-md" data-toggle="modal" data-target="#add_department">
+                                Add Department
+                            </a>
+                        </div>
+                        <div class="table-toolbar">
                             <div class="row">
                                 <div class="col-md-6">
-                                    
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group pull-right">
@@ -155,6 +160,9 @@
                                     <th class="hidden-xs">
                                         Action
                                     </th>
+                                    <th class="hidden-xs">
+                                        Status
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -168,7 +176,15 @@
                                             </td>
 
                                             <td>
-                                                <a href="<?php echo base_url() . "department/department_data/" . $row->department_id; ?>" class="btn btn-default btn-xs purple"><i class="fa fa-edit"></i> Edit</a>
+                                                <a class="btn btn-primary btn-sm update-department" data-department_id="<?php echo $row->department_id ?>" data-toggle="modal" data-target="#myModal">
+                                                    edit
+                                                </a>
+                                            </td>
+
+
+
+                                            <td>
+                                                <span class="label label-sm label-<?php echo ($row->status == "active") ? "success" : "danger"; ?> status" style="cursor: pointer;" data-department_id="<?php echo $row->department_id; ?>" data-status="<?php echo $row->status; ?>"><?php echo $row->status; ?> </span>
                                             </td>
                                         </tr>
                                         <?php
@@ -185,3 +201,84 @@
     </div>
 </div>
 </div>
+
+
+
+<!--Start Add With Model-->
+
+<div class="modal fade" id="add_department" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <form id="department_add_from" method="post">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Department</h4>
+            </div>
+            <div id="ajax-respose"></div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <div class="col-sm-4">
+                            <label class="control-label">
+                                Department Name
+                            </label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input class='form-control col-lg-5 itemSearch' name="department_name" id="department_name" type='text' placeholder='Select Keywords' />
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default close-button" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary save-changes">Save changes</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--end Add With Model-->
+
+
+<!--Start Update Model-->
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form id="update_department_form" method="post">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Department</h4>
+            </div>
+            <div id="error_update">
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <div class="col-sm-4">
+                        <label class="control-label">
+                            Department Name
+                        </label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" id="update_department_name" name="update_department_name" class="form-control"/>
+                    </div>
+                    <div class="col-sm-8">
+
+                        <input type="hidden" id="update_department_id_hidden" name="update_department_id_hidden" class="form-control"/>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default close-button" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary save-changes">Save changes</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--End Update Model-->
