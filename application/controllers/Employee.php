@@ -15,7 +15,7 @@ class Employee extends CI_Controller {
         $this->template->add_css('plugins/select2/select2.css');
         $this->template->add_css('plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css');
 
-        //page level plugin
+        //page level plugin test
         $this->template->add_js('plugins/select2/select2.min.js');
         $this->template->add_js('plugins/datatables/media/js/jquery.dataTables.min.js');
         $this->template->add_js('plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js');
