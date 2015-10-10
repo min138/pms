@@ -12,7 +12,7 @@
 
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                <form class="form-horizontal" action="<?php echo base_url() . "employee/edit_employee/$employee->employee_id"; ?>" enctype="multipart/form-data" id="myForm1" method="post">
+                <form class="form-horizontal" action="<?php echo base_url() . "employee/edit_employee/$employee->employee_id"; ?>" enctype="multipart/form-data" id="employee_form1" method="post">
                     <div class="form-body">
 
                         <?php if ($this->session->flashdata('error')) { ?>

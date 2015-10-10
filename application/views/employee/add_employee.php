@@ -12,7 +12,7 @@
 
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                <form class="form-horizontal" action="<?php echo base_url() . 'employee/add_employee'; ?>" enctype="multipart/form-data" id="myForm" method="post">
+                <form class="form-horizontal" action="<?php echo base_url() . 'employee/add_employee'; ?>" enctype="multipart/form-data" id="employee_form" method="post">
                     <div class="form-body">
                         <?php if ($this->session->flashdata('error')) { ?>
                             <div class="alert alert-danger">
@@ -31,7 +31,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="employee_code" value="<?php echo set_value('employee_code'); ?>" class="form-control"/>
+                                                <input type="text" name="employee_code" id="employee_code" value="<?php echo set_value('employee_code'); ?>" class="form-control"/>
                                                 <?php echo form_error('employee_code'); ?>
                                             </div>
                                         </div>
@@ -45,7 +45,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="employee_first_name" value="<?php echo set_value('employee_first_name'); ?>" class="form-control"/>
+                                                <input type="text" name="employee_first_name" id="employee_first_name" value="<?php echo set_value('employee_first_name'); ?>" class="form-control"/>
                                                 <?php echo form_error('employee_first_name'); ?>
                                             </div>
                                         </div>
@@ -59,7 +59,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="employee_middle_name" value="<?php echo set_value('employee_middle_name'); ?>" class="form-control"/>
+                                                <input type="text" name="employee_middle_name" id="employee_middle_name" value="<?php echo set_value('employee_middle_name'); ?>" class="form-control"/>
                                                 <?php echo form_error('employee_middle_name'); ?>
                                             </div>
                                         </div>
@@ -73,7 +73,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="employee_last_name" value="<?php echo set_value('employee_last_name'); ?>" class="form-control"/>
+                                                <input type="text" name="employee_last_name" id="employee_last_name" value="<?php echo set_value('employee_last_name'); ?>" class="form-control"/>
                                                 <?php echo form_error('employee_last_name'); ?>
                                             </div>
                                         </div>
@@ -87,7 +87,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="birth_date" value="<?php echo set_value('birth_date'); ?>" class="form-control date-picker"/>
+                                                <input type="text" name="birth_date" id="birth_date" value="<?php echo set_value('birth_date'); ?>" class="form-control date-picker"/>
                                                 <?php echo form_error('birth_date'); ?>
                                             </div>
                                         </div>
@@ -101,7 +101,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="mobile_number" value="<?php echo set_value('mobile_number'); ?>" class="form-control"/>
+                                                <input type="text" name="mobile_number" id="mobile_number" value="<?php echo set_value('mobile_number'); ?>" class="form-control"/>
                                                 <?php echo form_error('mobile_number'); ?>
                                             </div>
                                         </div>
@@ -117,10 +117,10 @@
                                             <div class="col-sm-8">
                                                 <div class="radio-list">
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="employee_gender" value="Male"> Male
+                                                        <input type="radio" class="form-control" name="employee_gender" id="employee_gender" value="Male"> Male
                                                     </label>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="employee_gender" value="Female"> Female
+                                                        <input type="radio" class="form-control" name="employee_gender" id="employee_gender" value="Female"> Female
                                                     </label>
                                                 </div>
                                             </div>
@@ -235,7 +235,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input name="join_date" type="text" class="form-control date-picker date-picker"/>
+                                                <input name="join_date" id="join_date" type="text" class="form-control date-picker date-picker"/>
                                             </div>
                                         </div>
                                     </div>
@@ -248,7 +248,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input name="email_id" type="text" class="form-control"/>
+                                                <input name="email_id" id="email_id" type="text" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -360,7 +360,7 @@
                                                         </label>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <input type="text" name="login" class="form-control"/>
+                                                        <input type="text" name="login" id="login" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -372,7 +372,7 @@
                                                         </label>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <input type="password" name="password" class="form-control"/>
+                                                        <input type="password" name="password" id="password" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>

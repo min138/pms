@@ -43,12 +43,13 @@ class Employee extends CI_Controller {
 
         //page level plugin
         $this->template->add_js('plugins/select2/select2.min.js');
+        $this->template->add_js('plugins/jquery-validation/js/jquery.validate.min.js');
         $this->template->add_js('plugins/bootstrap-datepicker/js/bootstrap-datepicker.js');
 
         //Page Script
         $this->template->add_js('scripts/app.js');
         $this->template->add_js('scripts/employee/employee-function.js');
-        $this->template->add_js('scripts/employee/jquery.validate.js');
+        
 
         $this->data['js'] = $this->template->js;
         $this->data['css'] = $this->template->css;
@@ -205,12 +206,13 @@ class Employee extends CI_Controller {
 
         //page level plugin
         $this->template->add_js('plugins/select2/select2.min.js');
+        $this->template->add_js('plugins/jquery-validation/js/jquery.validate.min.js');
         $this->template->add_js('plugins/bootstrap-datepicker/js/bootstrap-datepicker.js');
 
         //Page Script
         $this->template->add_js('scripts/app.js');
         $this->template->add_js('scripts/employee/employee-function.js');
-        $this->template->add_js('scripts/employee/jquery.validate.js');
+        
 
         $this->data['title'] = "Employee";
         $this->data['page_title'] = "Edit Employee";
@@ -389,17 +391,6 @@ class Employee extends CI_Controller {
             $this->session->set_flashdata('success', "Record Of $lname $fname $mname is Been Update Sucessfully.");
             redirect(base_url('employee'));
         }
-    }
-
-    public function delete_employee($id) {
-
-        //Transfering data to Model
-        $this->employee_model->form_delete($id);
-
-        $this->session->set_flashdata('success', 'Successfully Delete Employee Information');
-        redirect(base_url('employee'));
-
-        //$this->load->view('template', $this->data);
     }
 
     public function get_department_list() {
