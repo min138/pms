@@ -25,13 +25,13 @@ $(document).ready(function () {
                         data.leave_data.leave_category_id]
                             );
                     $("#add_leave_type_form")[0].reset();
-                    $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> '+data.leave_data.leave_name+' Successfully Added</div>');
+                    $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> ' + data.leave_data.leave_name + ' Successfully Added</div>');
                     $(".alert-success").hide(3000);
                 }
             }
 
         });
-       
+
     });
 
 
@@ -62,8 +62,8 @@ $(document).ready(function () {
             [0, "asc"]
         ] // set first column as a default sort by asc
     });
-    
-    
+
+   
 
 });
 
@@ -114,11 +114,11 @@ $("#update_leave_form").submit(function (e) {
             if (data.status == "true") {
                 $("#myModal").modal('hide');
                 $("#update_leave_form")[0].reset();
-                $("#"+data.leave_data.leave_category_id).html(data.leave_data.leave_name);
-                $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> '+data.leave_data.leave_name+' Successfully Modified</div>');
+                $("#col0_" + data.leave_data.leave_category_id).html(data.leave_data.leave_name);
+                $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> ' + data.leave_data.leave_name + ' Successfully Modified</div>');
                 $(".alert-success").hide(3000);
             }
-            
+
         }
 
     });

@@ -49,10 +49,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <?php echo add_css('themes/default.css'); ?>
         <?php echo add_css('custom.css'); ?>
 
-        <script>
-            var BASE_URL = "<?php echo base_url(); ?>";
-        </script>
-
         <!-- END THEME STYLES -->
         <link rel="shortcut icon" href="favicon.ico"/>
         <script>

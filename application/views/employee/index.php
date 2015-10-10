@@ -105,7 +105,7 @@
                                             <?php echo $row->email_id; ?> </a>
                                     </td>
                                     <td>
-                                        <?php echo date('d/m/Y', strtotime($row->mobile_number)); ?>
+                                        <?php echo date('d/m/Y',strtotime($row->join_date)); ?>
                                     </td>
                                     <td class="center">
                                         <?php echo $row->designation_name; ?>

@@ -63,6 +63,13 @@ $class = strtolower($this->router->fetch_class());
                             <span class="selected"></span>
                         </a>
                     </li>
+                    <li class="start <?php echo $active_tab == "add-employee-leave" ? "active" : ''; ?> ">
+                        <a href="<?php echo base_url('leave/employee_leave_request'); ?>">
+                            <i class="icon-grid"></i>
+                            <span class="title">Employee Leave</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 

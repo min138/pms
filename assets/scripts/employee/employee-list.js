@@ -24,5 +24,5 @@ $(document).ready(function () {
         ] // set first column as a default sort by asc
     });
     $(".alert-success").hide(3000);
-
+     
 });

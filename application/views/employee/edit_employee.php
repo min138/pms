@@ -12,7 +12,7 @@
 
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                <form class="form-horizontal" action="<?php echo base_url() . "employee/edit_employee/$employee->employee_id"; ?>" enctype="multipart/form-data" id="myForm" method="post">
+                <form class="form-horizontal" action="<?php echo base_url() . "employee/edit_employee/$employee->employee_id"; ?>" enctype="multipart/form-data" id="myForm1" method="post">
                     <div class="form-body">
 
                         <?php if ($this->session->flashdata('error')) { ?>
@@ -361,19 +361,42 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <h3 class="form-section">Employee Login Detail</h3>
-                                        <div class="col-sm-6 form-group">
-                                            <div class="col-sm-3">
-                                                <label class="control-label">
-                                                    Employee Login ID
-                                                </label>
+                                        <div class="row">
+                                                <div class="col-sm-12 form-group">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">
+                                                            Employee Login ID
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" name="login" value="<?php echo set_value('company_email_id', (isset($employee->company_email_id) && !empty($employee->company_email_id)) ? $employee->company_email_id : ""); ?>" class="form-control"/>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <input type="text" name="login" value="<?php echo set_value('company_email_id', (isset($employee->company_email_id) && !empty($employee->company_email_id)) ? $employee->company_email_id : ""); ?>" class="form-control"/>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
+                                    <div class="col-sm-6">
+                                            <h3 class="form-section">Add Leave Details</h3>
+                                            <?php foreach ($leave as $post) { ?>
+                                                <div class="row">
+                                                    <div class="col-sm-12 form-group">
+                                                        <div class="col-sm-3">
+                                                            <label class="control-label">
+                                                                <?php echo $post->leave_name; ?>
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            
+                                                            <input type="hidden" name="employee_leave_id[]" value="<?php echo $post->employee_leave_id; ?>">
+                                                            <input type="text" name="leave[]" class="form-control" value="<?php echo $post->allowed_days; ?>"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php } ?> 
+                                        </div>
                                 </div>
                             </div>
                         </div>

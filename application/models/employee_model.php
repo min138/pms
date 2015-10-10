@@ -37,6 +37,17 @@ class Employee_model extends CI_Model {
     function leave_insert($table_name, $param) {
         $this->db->insert($table_name, $param);
     }
+    
+    function leave_update($table_name, $param, $empl_leave_id) {
+        $this->db->where('employee_leave_id',$empl_leave_id);
+        $this->db->update($table_name, $param);
+    }
+    
+    function emp_delete_leave($table_name, $id) {
+        
+        $this->db->where('employee_id',$id);
+        $this->db->delete($table_name);
+    }
 
     function emp_update($table_name, $param, $id, $field) {
         $this->db->where($field, $id);
@@ -60,12 +71,18 @@ class Employee_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-
+    
+    function get_employee_leave_data($id) {
+        $this->db->join('leave_category_master', 'leave_category_master.leave_category_id = employee_leave.leave_type_id','left');
+        $query = $this->db->get_where('employee_leave', array('employee_leave.employee_id' => $id));
+        return $query->result();
+    }
+    
     function get_employee_data($id) {
         $this->db->join('login_master', 'login_master.login_employee_id = employee_master.employee_id');
         $this->db->join('designation_master', 'designation_master.designation_id = employee_master.designation_id');
         $this->db->join('department_master', 'department_master.department_id = employee_master.department_id');
-        $this->db->join('address_master', 'address_master.address_employee_id = employee_master.employee_id');
+        $this->db->join('address_master', 'address_master.address_employee_id = employee_master.employee_id','left');
         $query = $this->db->get_where('employee_master', array('employee_master.employee_id' => $id));
         return $query->first_row();
     }

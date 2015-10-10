@@ -76,7 +76,7 @@
                                     foreach ($leave as $row) {
                                         ?>
                                         <tr class="odd gradeX">
-                                            <td id="<?php echo $row->leave_category_id; ?>">
+                                            <td id="col0_<?php echo $row->leave_category_id; ?>">
                                                 <?php echo $row->leave_name; ?>
                                             </td>
 

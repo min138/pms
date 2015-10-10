@@ -58,9 +58,7 @@ class Employee extends CI_Controller {
         $this->data['active_tab'] = "add-employee";
         $this->data['page_content'] = "employee/add_employee";
 
-        $this->data['leave'] = $this->employee_model->leave_type(); // calling Post model method getPosts()
-//        $this->load->view('template', $this->data);
-//        exit('No direct script access allowed');
+        $this->data['leave'] = $this->employee_model->leave_type();
 
         $this->form_validation->set_rules('employee_code', 'Employee Code', 'trim|required');
         $this->form_validation->set_rules('employee_first_name', 'First Name', 'trim|required|alpha');
@@ -76,7 +74,7 @@ class Employee extends CI_Controller {
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == FALSE) {
-//Field validation failed.  User redirected to login page
+            //Field validation failed.  User redirected to login page
             $this->load->view('template', $this->data);
         } else {
             $code = $this->input->post('employee_code');
@@ -87,7 +85,7 @@ class Employee extends CI_Controller {
             $mo = $this->input->post('mobile_number');
             $gender = $this->input->post('employee_gender');
 
-            $image = $this->input->post('employee_photo');
+            $img_name = $this->input->post('employee_photo');
             $dept = $this->input->post('department_id');
             $desc = $this->input->post('designation_id');
             $exp_year = $this->input->post('experience_year');
@@ -106,6 +104,8 @@ class Employee extends CI_Controller {
             $login = $this->input->post('login');
             $password = $this->input->post('password');
 
+            $emp_leave = $this->input->post('leave');
+            $emp_leave_type = $this->input->post('leave_type_id');
 
             $dir = './assets/uploads';
             if (!file_exists($dir) && !is_dir($dir)) {
@@ -172,26 +172,25 @@ class Employee extends CI_Controller {
                 'modified_date' => date('Y-m-d H:i:s'),
                 'status' => 'active'
             );
-
-            $leave_num = count($this->input->post('leave'));
-            $leave = $this->input->post('leave');
-            $leave_type_id = $this->input->post('leave_type_id');
-
-
-            for ($i = 0; $i < $leave_num; $i++) {
-
-                if ($leave[$i] != '') {
-                    $leave_param = array(
-                        'employee_id' => $emp_id,
-                        'leave_type_id' => $leave_type_id[$i],
-                        'allowed_days' => $leave[$i]
-                    );
-                    $this->employee_model->emp_leave('employee_leave', $leave_param);
-                }
-            }
             //Transfering data to Model
 
             $login_id = $this->employee_model->emp_insert('login_master', $login_param);
+
+
+            for ($i = 0; $i < count($emp_leave); $i++) {
+
+                if ($emp_leave[$i] != '') {
+                    $leave_param = array(
+                        'employee_id' => $emp_id,
+                        'leave_type_id' => $emp_leave_type[$i],
+                        'allowed_days' => $emp_leave[$i],
+                        'created_date' => date('Y-m-d H:i:s'),
+                        'modified_date' => date('Y-m-d H:i:s')
+                    );
+                    $this->employee_model->leave_insert('employee_leave', $leave_param);
+                }
+            }
+
 
             $this->session->set_flashdata('success', 'Successfully Saved Employee.');
             redirect(base_url('employee'));
@@ -241,6 +240,10 @@ class Employee extends CI_Controller {
         $this->data['js'] = $this->template->js;
         $this->data['css'] = $this->template->css;
 
+
+        $this->data['leave'] = $this->employee_model->get_employee_leave_data($id);
+        
+        
         $this->form_validation->set_rules('employee_code', 'Employee Code', 'trim|required');
         $this->form_validation->set_rules('employee_first_name', 'First Name', 'trim|required|alpha');
         $this->form_validation->set_rules('employee_middle_name', 'Middle Name', 'trim|required|alpha');
@@ -252,7 +255,7 @@ class Employee extends CI_Controller {
         $this->form_validation->set_rules('join_date', 'Joining Date', 'trim|required');
         $this->form_validation->set_rules('email_id', 'Email Id', 'trim|required');
         $this->form_validation->set_rules('login', 'Username', 'trim|required');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+
 
         if ($this->form_validation->run() == FALSE) {
             //Field validation failed.  User redirected to login page
@@ -266,7 +269,7 @@ class Employee extends CI_Controller {
             $mo = $this->input->post('mobile_number');
             $gender = $this->input->post('employee_gender');
 
-            $image = $this->input->post('employee_photo');
+            $img_name = $this->input->post('employee_photo');
             $dept = $this->input->post('department_id');
             $desc = $this->input->post('designation_id');
             $exp_year = $this->input->post('experience_year');
@@ -283,8 +286,11 @@ class Employee extends CI_Controller {
             $homeno = $this->input->post('homeno');
 
             $login = $this->input->post('login');
-            $password = $this->input->post('password');
 
+            $emp_leave = $this->input->post('leave');
+            
+            $emp_leave_id = $this->input->post('employee_leave_id');
+           
             $dir = './assets/uploads';
             if (!file_exists($dir) && !is_dir($dir)) {
                 mkdir('./assets/uploads', 0755, true);
@@ -319,9 +325,7 @@ class Employee extends CI_Controller {
                     'join_date' => $join_date,
                     'office_number' => $homeno,
                     'email_id' => $email,
-                    'created_date' => date('Y-m-d H:i:s'),
-                    'modified_date' => date('Y-m-d H:i:s'),
-                    'status' => 'active'
+                    'modified_date' => date('Y-m-d H:i:s')
                 );
             } else {
                 $emp_param = array(
@@ -340,9 +344,7 @@ class Employee extends CI_Controller {
                     'join_date' => $join_date,
                     'office_number' => $homeno,
                     'email_id' => $email,
-                    'created_date' => date('Y-m-d H:i:s'),
-                    'modified_date' => date('Y-m-d H:i:s'),
-                    'status' => 'active'
+                    'modified_date' => date('Y-m-d H:i:s')
                 );
             }
             //Transfering data to Model
@@ -357,9 +359,7 @@ class Employee extends CI_Controller {
                 'state' => $state,
                 'city' => $city,
                 'pin_code' => $pincode,
-                'created_date' => date('Y-m-d H:i:s'),
-                'modified_date' => date('Y-m-d H:i:s'),
-                'status' => 'active'
+                'modified_date' => date('Y-m-d H:i:s')
             );
             //Transfering data to Model
 
@@ -367,14 +367,24 @@ class Employee extends CI_Controller {
 
             $login_param = array(
                 'company_email_id' => $login,
-                'password' => $password,
-                'created_date' => date('Y-m-d H:i:s'),
-                'modified_date' => date('Y-m-d H:i:s'),
-                'status' => 'active'
+                'modified_date' => date('Y-m-d H:i:s')
             );
             //Transfering data to Model
 
             $this->employee_model->emp_update('login_master', $login_param, $id, 'login_employee_id');
+
+            
+            for ($i = 0; $i < count($emp_leave); $i++) {
+
+                if ($emp_leave[$i] != '') {
+                    $leave_param = array(
+                        'allowed_days' => $emp_leave[$i],
+                        'modified_date' => date('Y-m-d H:i:s')
+                    );
+                    
+                    $this->employee_model->leave_update('employee_leave', $leave_param,$emp_leave_id[$i]);
+                }
+            }
 
             $this->session->set_flashdata('success', "Record Of $lname $fname $mname is Been Update Sucessfully.");
             redirect(base_url('employee'));
