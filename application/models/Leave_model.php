@@ -17,14 +17,13 @@ class leave_model extends CI_Model {
     function leave_insert($param) {
 
         $this->db->insert('leave_category_master', $param);
-         $insert_id = $this->db->insert_id();
+        $insert_id = $this->db->insert_id();
         return $insert_id;
     }
-    
-    function emp_leave_insert($table_name,$leave_param) {
+
+    function emp_leave_insert($table_name, $leave_param) {
 
         $this->db->insert($table_name, $leave_param);
-         
     }
 
     function get_leave_list() {
@@ -38,34 +37,41 @@ class leave_model extends CI_Model {
         $this->db->where('leave_category_id', $id);
         $this->db->update('leave_category_master', $param);
     }
-    
+
     function leave_update_employee($emp_leave_id_hidden, $param) {
 
 
         $this->db->where('leave_id', $emp_leave_id_hidden);
         $this->db->update('leave_master', $param);
     }
-    
+
     function get_leave_by_id($id) {
-       
+
         $query = $this->db->get_where('leave_category_master', array('leave_category_id' => $id));
         return $query->first_row();
     }
-    
+
     function get_employee_leave_by_id($employee_leave_id) {
-        $this->db->join('leave_category_master','leave_category_master.leave_category_id = leave_master.leave_category_id');
-        $this->db->join('employee_master','employee_master.employee_id = leave_master.employee_id');
+        $this->db->join('leave_category_master', 'leave_category_master.leave_category_id = leave_master.leave_category_id');
+        $this->db->join('employee_master', 'employee_master.employee_id = leave_master.employee_id');
         $query = $this->db->get_where('leave_master', array('leave_id' => $employee_leave_id));
         return $query->first_row();
     }
 
-    function get_employee_leave_list(){
-        $this->db->join('leave_category_master', 'leave_category_master.leave_category_id = leave_master.leave_category_id');
-        $this->db->join('employee_master', 'employee_master.employee_id = leave_master.employee_id');
-        $query = $this->db->get('leave_master');
-        return $query->result();
+    function get_employee_leave_list($emp_id) {
+        if ($emp_id == 0) {
+            $this->db->join('leave_category_master', 'leave_category_master.leave_category_id = leave_master.leave_category_id');
+            $this->db->join('employee_master', 'employee_master.employee_id = leave_master.employee_id');
+            $query = $this->db->get('leave_master');
+            return $query->result();
+        } else {
+            $this->db->join('leave_category_master', 'leave_category_master.leave_category_id = leave_master.leave_category_id');
+            $this->db->join('employee_master', 'employee_master.employee_id = leave_master.employee_id');
+            $query = $this->db->get_where('leave_master',array('leave_master.employee_id'=>$emp_id));
+            return $query->result();
+        }
     }
-    
+
     function get_employee() {
         $result = $this->db->get("employee_master")->result();
         return $result;
@@ -78,7 +84,7 @@ class leave_model extends CI_Model {
         $result = $this->db->get("employee_master")->result();
         return $result;
     }
-    
+
     function get_leave() {
         $result = $this->db->get("leave_category_master")->result();
         return $result;

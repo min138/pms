@@ -55,6 +55,7 @@ class Auth extends CI_Controller {
                 $sess_array = array();
                 foreach ($result as $row) {
                     $this->session->set_userdata('id', $row->login_id);
+                    $this->session->set_userdata('empid', $row->login_employee_id);
                     $this->session->set_userdata('username', $row->company_email_id);
                 }
                 //Go to private area

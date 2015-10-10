@@ -2,13 +2,13 @@
     <div class="col-md-12">
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
         <div id="alert_msg">
-        <?php if ($this->session->flashdata('success') != "") { ?>
-            <div class="alert alert-success">
-                <strong>Success!</strong> <?php echo $this->session->flashdata('success'); ?>
-            </div>
-            <?php
-        }
-        ?>
+            <?php if ($this->session->flashdata('success') != "") { ?>
+                <div class="alert alert-success">
+                    <strong>Success!</strong> <?php echo $this->session->flashdata('success'); ?>
+                </div>
+                <?php
+            }
+            ?>
         </div>
         <div class="portlet">
             <div class="portlet-title">
@@ -125,9 +125,18 @@
                                     </td>
 
                                     <td>
-                                        <a class="view-leave" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id ?>" data-toggle="modal" data-target="#myModal">
-                                            <i class="fa fa-search"></i>&nbsp;<span class="text-muted">view</span>
-                                        </a>
+                                        <?php
+                                        $emp_id = $this->session->userdata('empid');
+                                        if ($emp_id == 0) {
+                                            ?>
+                                            <a class="view-leave" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id ?>" data-toggle="modal" data-target="#myModal">
+                                                <i class="fa fa-search"></i>&nbsp;<span class="text-muted">view</span>
+                                            </a>
+                                            <?php
+                                        } else {
+                                            echo "---";
+                                        }
+                                        ?>
                                     </td>
                                     <td id="col6_<?php echo $row->leave_id ?>">
                                         <?php
@@ -198,7 +207,18 @@
                 </div>
             </div>
 
-
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <div class="col-sm-4">
+                        <label class="control-label">
+                            Leave
+                        </label>
+                    </div>
+                    <div class="col-sm-8">
+                        <label class="control-label" id="emp_leave"></label>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-sm-12 form-group">
@@ -212,18 +232,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <div class="col-sm-4">
-                        <label class="control-label">
-                            Leave
-                        </label>
-                    </div>
-                    <div class="col-sm-8">
-                        <label class="control-label" id="emp_leave"></label>
-                    </div>
-                </div>
-            </div>
+            
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <div class="col-sm-4">

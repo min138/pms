@@ -75,7 +75,8 @@ class Leave extends CI_Controller {
         $this->data['active_tab'] = "add-employee-leave";
         $this->data['page_content'] = "leave/employee_leave_list";
 
-        $this->data['employees_leave'] = $this->leave_model->get_employee_leave_list();
+        $emp_id=$this->session->userdata('empid');
+        $this->data['employees_leave'] = $this->leave_model->get_employee_leave_list($emp_id);
 
         $this->load->view('template', $this->data);
     }

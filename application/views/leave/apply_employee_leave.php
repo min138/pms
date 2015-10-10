@@ -19,6 +19,10 @@
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
                                     <h3 class="form-section">Leave Info</h3>
+                                    <?php
+                                    $emp_id=$this->session->userdata('empid');
+                                    if($emp_id==0){
+                                    ?>
                                     <div class="row">
                                         <div class="col-sm-12 form-group">
                                             <div class="col-sm-4">
@@ -32,7 +36,13 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <?php
+                                    }else{
+                                    ?>
+                                    <input class='form-control' name="employee_id"  type='hidden' placeholder='Select a Employee' value="<?php echo $emp_id; ?>"/>
+                                    <?php
+                                    }
+                                    ?>
                                     <div class="row">
                                         <div class="col-sm-12 form-group">
                                             <div class="col-sm-4">
@@ -47,7 +57,23 @@
                                         </div>
                                     </div>
 
-                                    
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">
+                                                    Leave
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <select name="employee_leave" class="form-control">
+                                                        <option value="One Day" selected="">One Day</option>
+                                                        <option value="Half Day">Half Day</option>
+                                                        <option value="Range">Range</option>
+                                                        
+                                                    </select>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="row">
                                         <div class="col-sm-12 form-group">
@@ -77,23 +103,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-sm-12 form-group">
-                                            <div class="col-sm-4">
-                                                <label class="control-label">
-                                                    Leave
-                                                </label>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <select name="employee_leave" class="form-control">
-                                                        <option value="One Day" selected="">One Day</option>
-                                                        <option value="Half Day">Half Day</option>
-                                                        <option value="Range">Range</option>
-                                                        
-                                                    </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
                                
