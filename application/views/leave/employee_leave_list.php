@@ -101,9 +101,17 @@
                                         <?php echo $row->leave_name; ?>
                                     </td>
                                     <td>
-                                        <?php echo date('d/m/Y', strtotime($row->start_date)); ?>
-                                        &nbsp;To&nbsp;
-                                        <?php echo date('d/m/Y', strtotime($row->end_date)); ?>
+                                        <?php
+                                        if ($row->leave_type == "Range") {
+                                            echo date('d/m/Y', strtotime($row->start_date));
+                                            ?>
+                                            &nbsp;To&nbsp;
+                                            <?php
+                                            echo date('d/m/Y', strtotime($row->end_date));
+                                        } else {
+                                            echo date('d/m/Y', strtotime($row->start_date));
+                                        }
+                                        ?>
                                     </td>
 
                                     <td class="center">
@@ -142,18 +150,18 @@
                                         <?php
                                         if ($row->leave_status == "approved") {
                                             ?>
-                                            <span class="label label-sm label-success status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo $row->leave_status; ?></span>
+                                            <span class="label label-sm label-success status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo str_replace("_"," ",$row->leave_status); ?></span>
                                             <?php
                                         } elseif ($row->leave_status == "disapproved") {
                                             ?>
-                                            <span class="label label-sm label-danger status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo $row->leave_status; ?></span>
+                                            <span class="label label-sm label-danger status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo str_replace("_"," ",$row->leave_status); ?></span>
                                             <?php
                                         } else {
                                             ?>
-                                            <span class="label label-sm label-warning status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo $row->leave_status; ?></span>
-                                            <?php
-                                        }
-                                        ?>
+                                            <span class="label label-sm label-warning status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo str_replace("_"," ",$row->leave_status); ?></span>
+            <?php
+        }
+        ?>
                                     </td>
                                 </tr>
                                 <?php
@@ -232,7 +240,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <div class="col-sm-4">

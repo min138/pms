@@ -14,33 +14,29 @@
                 <!-- BEGIN FORM-->
                 <form class="form-horizontal" action="<?php echo base_url() . 'leave/apply_employee_leave'; ?>" id="apply_leave" method="post">
                     <div class="form-body">
-                        
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
                                     <h3 class="form-section">Leave Info</h3>
                                     <?php
-                                    $emp_id=$this->session->userdata('empid');
-                                    if($emp_id==0){
-                                    ?>
-                                    <div class="row">
-                                        <div class="col-sm-12 form-group">
-                                            <div class="col-sm-4">
-                                                <label class="control-label">
-                                                    Employee Name
-                                                </label>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <input class='form-control col-lg-5 itemSearch' name="employee_id" id="employee_id" type='text' placeholder='Select a Employee'/>
-                                                <?php echo form_error('employee_id'); ?>
+                                    $emp_id = $this->session->userdata('empid');
+                                    if ($emp_id == 0) {
+                                        ?>
+                                        <div class="row">
+                                            <div class="col-sm-12 form-group">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">
+                                                        Employee Name
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input class='form-control col-lg-5 itemSearch' name="employee_id" id="employee_id" type='text' placeholder='Select a Employee'/>
+                                                    <?php echo form_error('employee_id'); ?>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <?php
-                                    }else{
-                                    ?>
-                                    <input class='form-control' name="employee_id"  type='hidden' placeholder='Select a Employee' value="<?php echo $emp_id; ?>"/>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                     <div class="row">
@@ -65,12 +61,13 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <select name="employee_leave" class="form-control">
-                                                        <option value="One Day" selected="">One Day</option>
-                                                        <option value="Half Day">Half Day</option>
-                                                        <option value="Range">Range</option>
-                                                        
-                                                    </select>
+                                                <select name="employee_leave" id="employee_leave" class="form-control" onchange="show_end_date(this.value);">
+                                                    <option value="" selected="">Select leave</option>
+                                                    <option value="One Day">One Day</option>
+                                                    <option value="Half Day">Half Day</option>
+                                                    <option value="Range">Range</option>
+
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -83,13 +80,13 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="start_date" value="<?php echo set_value('start_date'); ?>" class="form-control date-picker"/>
+                                                <input type="text" name="start_date" id="start_date" value="<?php echo set_value('start_date'); ?>" class="form-control date-picker"/>
                                                 <?php echo form_error('start_date'); ?>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row" id="edate" style="display: none;">
                                         <div class="col-sm-12 form-group">
                                             <div class="col-sm-4">
                                                 <label class="control-label">
@@ -97,22 +94,22 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <input name="end_date" type="text" value="<?php echo set_value('end_date'); ?>" class="form-control date-picker date-picker"/>
+                                                <input name="end_date" type="text" id="end_date" value="<?php echo set_value('end_date'); ?>" class="form-control date-picker date-picker"/>
                                                 <?php echo form_error('end_date'); ?>
                                             </div>
                                         </div>
                                     </div>
 
-                                    
+
                                 </div>
 
-                               
+
 
                                 <div class="col-sm-6">
                                     <h3 class="form-section">Leave Reason</h3>
                                     <div class="row">
                                         <div class="col-sm-12 form-group">
-                                            
+
                                             <div class="col-sm-12">
                                                 <textarea name="msg" class="form-control" rows="10"></textarea>
                                                 <?php echo form_error('msg'); ?>
@@ -120,10 +117,10 @@
                                         </div>
                                     </div>
 
-                                    
+
                                 </div>
 
-                                
+
                             </div>
                         </div>
                     </div>

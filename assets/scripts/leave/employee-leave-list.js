@@ -55,11 +55,12 @@ $(document).on("click", ".view-leave", function (e) {
             $("#emp_leave").text(data.leave);
             $("#emp_leave_reason").text(data.leave_reason);
             if (data.leave_status == "approved") {
-                $("#emp_status").html("<input type='radio' name='status' id='status' value='approved' checked>&nbsp;approved&nbsp;<input type='radio' name='status' id='status' value='disapproved'>&nbsp;disapproved&nbsp;<input type='radio' name='status' id='status' value='on_hold'>&nbsp;on_hold");
+                $("#emp_status").html("<input type='radio' name='status' id='status' value='approved' checked>&nbsp;approved&nbsp;<input type='radio' name='status' id='status' value='disapproved'>&nbsp;disapproved&nbsp;<input type='radio' name='status' id='status' value='on_hold'>&nbsp;on hold");
             } else if (data.leave_status == "disapproved") {
-                $("#emp_status").html("<input type='radio' name='status' id='status' value='approved'>&nbsp;approved&nbsp;<input type='radio' name='status' id='status' value='disapproved' checked>&nbsp;disapproved&nbsp;<input type='radio' name='status' id='status' value='on_hold'>&nbsp;on_hold");
+                $("#emp_status").html("<input type='radio' name='status' id='status' value='approved'>&nbsp;approved&nbsp;<input type='radio' name='status' id='status' value='disapproved' checked>&nbsp;disapproved&nbsp;<input type='radio' name='status' id='status' value='on_hold'>&nbsp;on hold");
             } else {
-                $("#emp_status").html("<input type='radio' name='status' id='status' value='approved'>&nbsp;approved&nbsp;<input type='radio' name='status' id='status' value='disapproved'>&nbsp;disapproved&nbsp;<input type='radio' name='status' id='status' value='on_hold' checked>&nbsp;on_hold");
+                
+                $("#emp_status").html("<input type='radio' name='status' id='status' value='approved'>&nbsp;approved&nbsp;<input type='radio' name='status' id='status' value='disapproved'>&nbsp;disapproved&nbsp;<input type='radio' name='status' id='status' value='on_hold' checked>&nbsp;on hold");
             }
 
 
@@ -90,7 +91,9 @@ $("#update_employee_leave_form").submit(function (e) {
                 }else if(data.leave_data.leave_status == "disapproved"){
                     $("#col6_" + data.leave_data.leave_id).html("<span class='label label-sm label-danger status' style='cursor: pointer;' data-leave_id='"+data.leave_data.leave_id+"' data-status='"+data.leave_data.leave_status+"'>"+data.leave_data.leave_status+"</span>");
                 }else{
-                    $("#col6_" + data.leave_data.leave_id).html("<span class='label label-sm label-warning status' style='cursor: pointer;' data-leave_id='"+data.leave_data.leave_id+"' data-status='"+data.leave_data.leave_status+"'>"+data.leave_data.leave_status+"</span>");
+                    var str=data.leave_data.leave_status;
+                    var res=str.replace('_',' ');
+                    $("#col6_" + data.leave_data.leave_id).html("<span class='label label-sm label-warning status' style='cursor: pointer;' data-leave_id='"+data.leave_data.leave_id+"' data-status='"+data.leave_data.leave_status+"'>"+res+"</span>");
                 }
                 
                 $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong>  Successfully Updated Status</div>');

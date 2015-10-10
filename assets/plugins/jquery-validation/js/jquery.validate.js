@@ -298,6 +298,7 @@ $.extend($.validator, {
 		date: "Please enter a valid date.",
 		dateISO: "Please enter a valid date (ISO).",
 		number: "Please enter a valid number.",
+                lettersonly: "Please enter only characters.",
 		digits: "Please enter only digits.",
 		creditcard: "Please enter a valid credit card number.",
 		equalTo: "Please enter the same value again.",
@@ -856,6 +857,7 @@ $.extend($.validator, {
 		dateISO: { dateISO: true },
 		number: { number: true },
 		digits: { digits: true },
+                lettersonly: {lettersonly: true},
 		creditcard: { creditcard: true }
 	},
 
@@ -1087,6 +1089,10 @@ $.extend($.validator, {
 		// http://jqueryvalidation.org/digits-method/
 		digits: function( value, element ) {
 			return this.optional(element) || /^\d+$/.test(value);
+		},
+                
+                lettersonly: function(value, element) {
+			return this.optional(element) || /^[a-zA-Z]+$/.test(value);
 		},
 
 		// http://jqueryvalidation.org/creditcard-method/

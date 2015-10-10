@@ -242,8 +242,8 @@ class Employee extends CI_Controller {
 
 
         $this->data['leave'] = $this->employee_model->get_employee_leave_data($id);
-        
-        
+
+
         $this->form_validation->set_rules('employee_code', 'Employee Code', 'trim|required');
         $this->form_validation->set_rules('employee_first_name', 'First Name', 'trim|required|alpha');
         $this->form_validation->set_rules('employee_middle_name', 'Middle Name', 'trim|required|alpha');
@@ -288,9 +288,9 @@ class Employee extends CI_Controller {
             $login = $this->input->post('login');
 
             $emp_leave = $this->input->post('leave');
-            
+
             $emp_leave_id = $this->input->post('employee_leave_id');
-           
+
             $dir = './assets/uploads';
             if (!file_exists($dir) && !is_dir($dir)) {
                 mkdir('./assets/uploads', 0755, true);
@@ -373,7 +373,7 @@ class Employee extends CI_Controller {
 
             $this->employee_model->emp_update('login_master', $login_param, $id, 'login_employee_id');
 
-            
+
             for ($i = 0; $i < count($emp_leave); $i++) {
 
                 if ($emp_leave[$i] != '') {
@@ -381,8 +381,8 @@ class Employee extends CI_Controller {
                         'allowed_days' => $emp_leave[$i],
                         'modified_date' => date('Y-m-d H:i:s')
                     );
-                    
-                    $this->employee_model->leave_update('employee_leave', $leave_param,$emp_leave_id[$i]);
+
+                    $this->employee_model->leave_update('employee_leave', $leave_param, $emp_leave_id[$i]);
                 }
             }
 
@@ -403,75 +403,85 @@ class Employee extends CI_Controller {
     }
 
     public function get_department_list() {
-
-        $row = array();
-        $return_arr = array();
-        $row_array = array();
-        $keyword_name = $this->input->post("department_id");
-        if ($keyword_name != '') {
-            $result = $this->employee_model->search_department($keyword_name);
-            if (count($result) > 0) {
-                foreach ($result as $row) {
-                    $row_array['id'] = $row->department_id;
-                    $row_array['text'] = utf8_encode($row->department_name);
-                    array_push($return_arr, $row_array);
-                }
-            }
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
         } else {
-            $result = $this->employee_model->get_department();
-            if (count($result) > 0) {
-                foreach ($result as $row) {
-                    $row_array['id'] = $row->department_id;
-                    $row_array['text'] = utf8_encode($row->department_name);
-                    array_push($return_arr, $row_array);
+            $row = array();
+            $return_arr = array();
+            $row_array = array();
+            $keyword_name = $this->input->post("department_id");
+            if ($keyword_name != '') {
+                $result = $this->employee_model->search_department($keyword_name);
+                if (count($result) > 0) {
+                    foreach ($result as $row) {
+                        $row_array['id'] = $row->department_id;
+                        $row_array['text'] = utf8_encode($row->department_name);
+                        array_push($return_arr, $row_array);
+                    }
+                }
+            } else {
+                $result = $this->employee_model->get_department();
+                if (count($result) > 0) {
+                    foreach ($result as $row) {
+                        $row_array['id'] = $row->department_id;
+                        $row_array['text'] = utf8_encode($row->department_name);
+                        array_push($return_arr, $row_array);
+                    }
                 }
             }
-        }
 
-        $ret['items'] = $return_arr;
-        echo json_encode($ret);
+            $ret['items'] = $return_arr;
+            echo json_encode($ret);
+        }
     }
 
     public function get_designation_list($id) {
-
-        $row = array();
-        $return_arr = array();
-        $row_array = array();
-        $keyword_name = $this->input->post("designation_id");
-        if ($keyword_name != '') {
-            $result = $this->employee_model->search_designation($keyword_name, $id);
-            if (count($result) > 0) {
-                foreach ($result as $row) {
-                    $row_array['id'] = $row->designation_id;
-                    $row_array['text'] = utf8_encode($row->designation_name);
-                    array_push($return_arr, $row_array);
-                }
-            }
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
         } else {
-            $result = $this->employee_model->get_designation($id);
-            if (count($result) > 0) {
-                foreach ($result as $row) {
-                    $row_array['id'] = $row->designation_id;
-                    $row_array['text'] = utf8_encode($row->designation_name);
-                    array_push($return_arr, $row_array);
+            $row = array();
+            $return_arr = array();
+            $row_array = array();
+            $keyword_name = $this->input->post("designation_id");
+            if ($keyword_name != '') {
+                $result = $this->employee_model->search_designation($keyword_name, $id);
+                if (count($result) > 0) {
+                    foreach ($result as $row) {
+                        $row_array['id'] = $row->designation_id;
+                        $row_array['text'] = utf8_encode($row->designation_name);
+                        array_push($return_arr, $row_array);
+                    }
+                }
+            } else {
+                $result = $this->employee_model->get_designation($id);
+                if (count($result) > 0) {
+                    foreach ($result as $row) {
+                        $row_array['id'] = $row->designation_id;
+                        $row_array['text'] = utf8_encode($row->designation_name);
+                        array_push($return_arr, $row_array);
+                    }
                 }
             }
-        }
 
-        $ret['items'] = $return_arr;
-        echo json_encode($ret);
+            $ret['items'] = $return_arr;
+            echo json_encode($ret);
+        }
     }
 
     public function change_status() {
-        $employee_id = $this->input->post("employee_id");
-        $status = $this->input->post("status");
-        $status = ($status == "active") ? "deactive" : "active";
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        } else {
+            $employee_id = $this->input->post("employee_id");
+            $status = $this->input->post("status");
+            $status = ($status == "active") ? "deactive" : "active";
 
-        $data = array(
-            "status" => $status
-        );
-        $this->employee_model->change_status_model($employee_id, $data);
-        echo $status;
+            $data = array(
+                "status" => $status
+            );
+            $this->employee_model->change_status_model($employee_id, $data);
+            echo $status;
+        }
     }
 
     public function view_employee_profile($id) {

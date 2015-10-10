@@ -6,26 +6,7 @@ $(document).ready(function () {
         });
         $('body').removeClass("modal-open"); // fix bug when inline picker is used in modal
     }
-    $("#employee_id").select2({
-        placeholder: 'Select a Employee',
-        multiple: false,
-        ajax: {
-            url: BASE_URL + "leave/get_employee_list",
-            dataType: 'json',
-            type: "POST",
-            quietMillis: 50,
-            data: function (term) {
-                return {
-                    term: term
-                };
-            },
-            results: function (data) {
-                return {
-                    results: data.items
-                };
-            }
-        }
-    });
+
     $("#employee_leave_type").select2({
         placeholder: 'Select a Employee Leave',
         multiple: false,
@@ -53,7 +34,6 @@ $(document).ready(function () {
                     return new Date(value) > new Date($(params).val());
                 }
             }, 'Must be greater than {0}.');
-
     var form1 = $('#apply_leave');
     var error1 = $('.alert-danger', form1);
     var success1 = $('.alert-success', form1);
@@ -64,9 +44,6 @@ $(document).ready(function () {
         focusInvalid: false, // do not focus the last invalid input
         ignore: "",
         rules: {
-            employee_id: {
-                required: true
-            },
             employee_leave_type: {
                 required: true
             },

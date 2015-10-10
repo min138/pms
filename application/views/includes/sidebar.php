@@ -36,6 +36,10 @@ $class = strtolower($this->router->fetch_class());
                     <span class="arrow "></span>
                 </a>
                 <ul class="sub-menu">
+                    <?php
+                    $employee_id = $this->session->userdata('empid');
+                    if($employee_id==0){
+                    ?>
                     <li class="<?php echo $active_tab == "employee" ? "active" : ''; ?>">
                         <a href="<?php echo base_url('employee'); ?>">
                             <i class="icon-grid"></i>
@@ -63,6 +67,9 @@ $class = strtolower($this->router->fetch_class());
                             <span class="selected"></span>
                         </a>
                     </li>
+                    <?php
+                    }
+                    ?>
                     <li class="start <?php echo $active_tab == "add-employee-leave" ? "active" : ''; ?> ">
                         <a href="<?php echo base_url('leave/employee_leave_request'); ?>">
                             <i class="icon-grid"></i>
