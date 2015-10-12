@@ -132,7 +132,7 @@
                                         <?php echo date('d/m/Y h:i:s', strtotime($row->leave_application_date)); ?>
                                     </td>
 
-                                    <td>
+                                    <td id="col5_<?php echo $row->leave_id; ?>">
                                         <?php
                                         $emp_id = $this->session->userdata('empid');
                                         if ($emp_id == 0) {
@@ -146,7 +146,7 @@
                                         }
                                         ?>
                                     </td>
-                                    <td id="col6_<?php echo $row->leave_id ?>">
+                                    <td id="col6_<?php echo $row->leave_id; ?>">
                                         <?php
                                         if ($row->leave_status == "approved") {
                                             ?>
@@ -190,12 +190,12 @@
 
             <div class="row">
                 <div class="col-sm-12 form-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label class="control-label">
-                            Employee Name
+                            <strong>Name</strong>
                         </label>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         <input type="hidden" name="update_employee_leave_id" id="update_employee_leave_id">
                         <label class="control-label" id="emp_name"></label>
                     </div>
@@ -204,12 +204,12 @@
 
             <div class="row">
                 <div class="col-sm-12 form-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label class="control-label">
-                            Leave Type
+                            <strong>Leave Type</strong>
                         </label>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         <label class="control-label" id="emp_leave_type"></label>
                     </div>
                 </div>
@@ -217,12 +217,12 @@
 
             <div class="row">
                 <div class="col-sm-12 form-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label class="control-label">
-                            Leave
+                            <strong>Leave</strong>
                         </label>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         <label class="control-label" id="emp_leave"></label>
                     </div>
                 </div>
@@ -230,12 +230,12 @@
 
             <div class="row">
                 <div class="col-sm-12 form-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label class="control-label">
-                            Date
+                            <strong>Date</strong>
                         </label>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         <label class="control-label" id="emp_leave_date"></label>
                     </div>
                 </div>
@@ -243,25 +243,30 @@
 
             <div class="row">
                 <div class="col-sm-12 form-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-12">
                         <label class="control-label">
-                            Reason
+                            <strong>Reason</strong>
                         </label>
                     </div>
-                    <div class="col-sm-8">
-                        <label class="control-label" id="emp_leave_reason"></label>
+                   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                   
+                    <div class="col-sm-12">
+                        <label class="control-label" id="emp_leave_reason" style="text-align: justify;"></label>
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-sm-12 form-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label class="control-label">
-                            Status
+                            <strong>Status</strong>
                         </label>
                     </div>
-                    <div class="col-sm-8" id="emp_status">
+                    <div class="col-sm-9" id="emp_status">
 
                     </div>
                 </div>

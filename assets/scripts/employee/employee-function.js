@@ -49,7 +49,7 @@ $(document).ready(function () {
         });
     });
 
-    $(".alert-danger").hide(3000);
+    $(".alert-danger").hide(7000);
 
     $.validator.addMethod("lettersOnly", function (value, element) {
         return this.optional(element) || /^[A-Za-z\s]+$/.test(value)

@@ -339,7 +339,7 @@ class Leave extends CI_Controller {
             $edate = date('Y-m-d', strtotime($this->input->post('end_date')));
             $emp_leave = $this->input->post('employee_leave');
             $message = $this->input->post('msg');
-
+            $uname = $this->session->userdata('username');
             $leave_param = array(
                 'employee_id' => $employee_id,
                 'leave_category_id' => $leave_type,
@@ -349,8 +349,8 @@ class Leave extends CI_Controller {
                 'leave_type' => $emp_leave,
                 'leave_status' => 'on_hold',
                 'leave_reason' => $message,
-                'created_date' => date('Y-m-d H:i:s'),
-                'modified_date' => date('Y-m-d H:i:s')
+                'lm_create_by' => $uname,
+                'lm_created_date' => date('Y-m-d H:i:s')
             );
             //Transfering data to Model
 
@@ -367,10 +367,8 @@ class Leave extends CI_Controller {
         } else {
             $employee_leave_id = $this->input->post("leave_id");
 
+
             $this->data['employee_leave_data'] = $this->leave_model->get_employee_leave_by_id($employee_leave_id);
-            // echo $this->data['department_data'];
-            //  exit();
-            //$this->data['department_name'] = $this->department_model->get_department_name($this->data['department_data']->department_id);
 
             $json_employee_leave_data = array(
                 'id' => $this->data['employee_leave_data']->leave_id,
@@ -390,7 +388,7 @@ class Leave extends CI_Controller {
             }
 
 
-
+            $mdate = date('d/m/Y h:i:s', strtotime($this->data['employee_leave_data']->lm_modified_date));
             $json_return_data = json_encode(array(
                 'employee_leave_data' => $json_employee_leave_data,
                 'employee_name' => $this->data['employee_leave_data']->employee_last_name . ' ' . $this->data['employee_leave_data']->employee_first_name . ' ' . $this->data['employee_leave_data']->employee_middle_name,
@@ -399,7 +397,9 @@ class Leave extends CI_Controller {
                 'leave' => $ldays,
                 'leave_reason' => $this->data['employee_leave_data']->leave_reason,
                 'leave_status' => $this->data['employee_leave_data']->leave_status,
-                'update_employee_leave_id_hidden' => $this->data['employee_leave_data']->leave_id,
+                'lm_modified_by' => $this->data['employee_leave_data']->lm_modified_by,
+                'lm_modified_date' => $mdate,
+                'update_employee_leave_id_hidden' => $this->data['employee_leave_data']->leave_id
             ));
 
             echo $json_return_data;
@@ -412,13 +412,17 @@ class Leave extends CI_Controller {
         } else {
 
             $emp_leave_status = $this->input->post('status');
+            $uname = $this->session->userdata('username');
 
             $emp_leave_id_hidden = $this->input->post('update_employee_leave_id');
+            
 
             $param = array(
                 'leave_status' => $emp_leave_status,
-                'modified_date' => date("Y-m-d H:i:s"),
+                'lm_modified_by' => $uname,
+                'lm_modified_date' => date("Y-m-d H:i:s")
             );
+
 
             $this->leave_model->leave_update_employee($emp_leave_id_hidden, $param);
 

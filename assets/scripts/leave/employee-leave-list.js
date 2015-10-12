@@ -23,7 +23,7 @@ $(document).ready(function () {
             [0, "asc"]
         ] // set first column as a default sort by asc
     });
-    $(".alert-success").hide(3000);
+    $(".alert-success").hide(7000);
 
 
 });
@@ -32,7 +32,7 @@ $(document).on("click", ".view-leave", function (e) {
 
     var current_object = $(this);
     var leave_id = current_object.data("leave_id");
-    
+
     $("#emp_name").text("");
     $("#emp_leave_type").text("");
     $("#emp_leave_date").text("");
@@ -55,12 +55,15 @@ $(document).on("click", ".view-leave", function (e) {
             $("#emp_leave").text(data.leave);
             $("#emp_leave_reason").text(data.leave_reason);
             if (data.leave_status == "approved") {
-                $("#emp_status").html("<input type='radio' name='status' id='status' value='approved' checked>&nbsp;approved&nbsp;<input type='radio' name='status' id='status' value='disapproved'>&nbsp;disapproved&nbsp;<input type='radio' name='status' id='status' value='on_hold'>&nbsp;on hold");
+                $("#emp_status").html("<label class='control-label' id='emp_leave_status'>approved by " + data.lm_modified_by + " from " + data.lm_modified_date + "</label>");
+                $(".modal-footer").hide();
             } else if (data.leave_status == "disapproved") {
-                $("#emp_status").html("<input type='radio' name='status' id='status' value='approved'>&nbsp;approved&nbsp;<input type='radio' name='status' id='status' value='disapproved' checked>&nbsp;disapproved&nbsp;<input type='radio' name='status' id='status' value='on_hold'>&nbsp;on hold");
+                $("#emp_status").html("<label class='control-label' id='emp_leave_status'>disapproved by " + data.lm_modified_by + " from " + data.lm_modified_date + "</label>");
+                $(".modal-footer").hide();
             } else {
-                
+
                 $("#emp_status").html("<input type='radio' name='status' id='status' value='approved'>&nbsp;approved&nbsp;<input type='radio' name='status' id='status' value='disapproved'>&nbsp;disapproved&nbsp;<input type='radio' name='status' id='status' value='on_hold' checked>&nbsp;on hold");
+                $(".modal-footer").show();
             }
 
 
@@ -86,18 +89,18 @@ $("#update_employee_leave_form").submit(function (e) {
             if (data.status == "true") {
                 $("#myModal").modal('hide');
                 $("#update_employee_leave_form")[0].reset();
-                if(data.leave_data.leave_status == "approved"){
-                    $("#col6_" + data.leave_data.leave_id).html("<span class='label label-sm label-success status' style='cursor: pointer;' data-leave_id='"+data.leave_data.leave_id+"' data-status='"+data.leave_data.leave_status+"'>"+data.leave_data.leave_status+"</span>");
-                }else if(data.leave_data.leave_status == "disapproved"){
-                    $("#col6_" + data.leave_data.leave_id).html("<span class='label label-sm label-danger status' style='cursor: pointer;' data-leave_id='"+data.leave_data.leave_id+"' data-status='"+data.leave_data.leave_status+"'>"+data.leave_data.leave_status+"</span>");
-                }else{
-                    var str=data.leave_data.leave_status;
-                    var res=str.replace('_',' ');
-                    $("#col6_" + data.leave_data.leave_id).html("<span class='label label-sm label-warning status' style='cursor: pointer;' data-leave_id='"+data.leave_data.leave_id+"' data-status='"+data.leave_data.leave_status+"'>"+res+"</span>");
+                if (data.leave_data.leave_status == "approved") {
+                    $("#col6_" + data.leave_data.leave_id).html("<span class='label label-sm label-success status' style='cursor: pointer;' data-leave_id='" + data.leave_data.leave_id + "' data-status='" + data.leave_data.leave_status + "'>" + data.leave_data.leave_status + "</span>");
+                } else if (data.leave_data.leave_status == "disapproved") {
+                    $("#col6_" + data.leave_data.leave_id).html("<span class='label label-sm label-danger status' style='cursor: pointer;' data-leave_id='" + data.leave_data.leave_id + "' data-status='" + data.leave_data.leave_status + "'>" + data.leave_data.leave_status + "</span>");
+                } else {
+                    var str = data.leave_data.leave_status;
+                    var res = str.replace('_', ' ');
+                    $("#col6_" + data.leave_data.leave_id).html("<span class='label label-sm label-warning status' style='cursor: pointer;' data-leave_id='" + data.leave_data.leave_id + "' data-status='" + data.leave_data.leave_status + "'>" + res + "</span>");
                 }
-                
+
                 $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong>  Successfully Updated Status</div>');
-                $(".alert-success").hide(3000);
+                $(".alert-success").hide(7000);
             }
 
         }

@@ -23,6 +23,6 @@ $(document).ready(function () {
             [0, "asc"]
         ] // set first column as a default sort by asc
     });
-    $(".alert-success").hide(3000);
+    $(".alert-success").hide(7000);
      
 });

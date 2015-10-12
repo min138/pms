@@ -26,7 +26,7 @@ $(document).ready(function () {
                             );
                     $("#add_leave_type_form")[0].reset();
                     $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> ' + data.leave_data.leave_name + ' Successfully Added</div>');
-                    $(".alert-success").hide(3000);
+                    $(".alert-success").hide(7000);
                 }
             }
 
@@ -116,7 +116,7 @@ $("#update_leave_form").submit(function (e) {
                 $("#update_leave_form")[0].reset();
                 $("#col0_" + data.leave_data.leave_category_id).html(data.leave_data.leave_name);
                 $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> ' + data.leave_data.leave_name + ' Successfully Modified</div>');
-                $(".alert-success").hide(3000);
+                $(".alert-success").hide(7000);
             }
 
         }
