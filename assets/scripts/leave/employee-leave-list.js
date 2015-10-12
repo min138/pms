@@ -54,6 +54,7 @@ $(document).on("click", ".view-leave", function (e) {
             $("#emp_leave_date").text(data.leave_date);
             $("#emp_leave").text(data.leave);
             $("#emp_leave_reason").text(data.leave_reason);
+            
             if (data.leave_status == "approved") {
                 $("#emp_status").html("<label class='control-label' id='emp_leave_status'>approved by " + data.lm_modified_by + " from " + data.lm_modified_date + "</label>");
                 $(".modal-footer").hide();
@@ -65,7 +66,11 @@ $(document).on("click", ".view-leave", function (e) {
                 $("#emp_status").html("<input type='radio' name='status' id='status' value='approved'>&nbsp;approved&nbsp;<input type='radio' name='status' id='status' value='disapproved'>&nbsp;disapproved&nbsp;<input type='radio' name='status' id='status' value='on_hold' checked>&nbsp;on hold");
                 $(".modal-footer").show();
             }
-
+            
+            $("#emp_total_leave").text(data.total_days);
+            $("#emp_total_leave_taken").text(data.total_days_taken);
+            var gdays=data.total_days-data.total_days_taken;
+            $("#emp_total_leave_gain").text(gdays);
 
             $("#update_employee_leave_id").val(data.update_employee_leave_id_hidden);
         }

@@ -259,6 +259,48 @@
                     </div>
                 </div>
             </div>
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Leave Details</h4>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <div class="col-sm-4">
+                        <label class="control-label">
+                            <strong>Total Leave</strong>
+                        </label>
+                    </div>
+                    <div class="col-sm-8" >
+                        <label class="control-label" id="emp_total_leave"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <div class="col-sm-4">
+                        <label class="control-label">
+                            <strong>Total Leave Taken</strong>
+                        </label>
+                    </div>
+                    <div class="col-sm-8" >
+                        <label class="control-label" id="emp_total_leave_taken"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <div class="col-sm-4">
+                        <label class="control-label">
+                            <strong>Total Leave Gain</strong>
+                        </label>
+                    </div>
+                    <div class="col-sm-8" >
+                        <label class="control-label" id="emp_total_leave_gain"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Leave Status</h4>
+            </div>
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <div class="col-sm-3">

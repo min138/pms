@@ -195,7 +195,7 @@ class Leave extends CI_Controller {
             $leave_category_id = $this->input->post("leave_category_id");
 
             $this->data['leave_data'] = $this->leave_model->get_leave_by_id($leave_category_id);
-            
+
             $json_leave_data = array(
                 'id' => $this->data['leave_data']->leave_category_id,
                 'text' => $this->data['leave_data']
@@ -334,6 +334,19 @@ class Leave extends CI_Controller {
             $emp_leave = $this->input->post('employee_leave');
             $message = $this->input->post('msg');
             $uname = $this->session->userdata('username');
+
+            if ($emp_leave == "One Day") {
+                $ldays = 1;
+            } elseif ($emp_leave == "Half Day") {
+                $ldays = 0.5;
+            } else {
+                $diff = abs(strtotime($edate) - strtotime($sdate));
+                $years = floor($diff / (365 * 60 * 60 * 24));
+                $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+                $ldays = ($days + 1) . ' Days';
+            }
+            
             $leave_param = array(
                 'employee_id' => $employee_id,
                 'leave_category_id' => $leave_type,
@@ -344,7 +357,8 @@ class Leave extends CI_Controller {
                 'leave_status' => 'on_hold',
                 'leave_reason' => $message,
                 'lm_create_by' => $uname,
-                'lm_created_date' => date('Y-m-d H:i:s')
+                'lm_created_date' => date('Y-m-d H:i:s'),
+                'ndays' => $ldays
             );
             //Transfering data to Model
 
@@ -360,6 +374,7 @@ class Leave extends CI_Controller {
             exit('No direct script access allowed');
         } else {
             $employee_leave_id = $this->input->post("leave_id");
+
 
 
             $this->data['employee_leave_data'] = $this->leave_model->get_employee_leave_by_id($employee_leave_id);
@@ -381,6 +396,37 @@ class Leave extends CI_Controller {
                 $ldays = $this->data['employee_leave_data']->leave_type;
             }
 
+            $employee_id = $this->data['employee_leave_data']->employee_id;
+            //$lt_id = $this->data['employee_leave_data']->leave_category_id;
+
+
+            $this->data['allow_leave_data'] = $this->leave_model->get_employee_allow_leave_by_id($employee_id);
+
+
+
+            $json_employee_allowed_leave_data = array(
+                'id' => $employee_id,
+                'text' => $this->data['allow_leave_data']
+            );
+
+
+
+            $tdays = $this->data['allow_leave_data'][0]->totalleave;
+
+            $this->data['taken_leave_data'] = $this->leave_model->get_employee_taken_leave_by_id($employee_id);
+
+
+
+            $json_employee_taken_leave_data = array(
+                'id' => $employee_id,
+                'text' => $this->data['taken_leave_data']
+            );
+
+
+
+            $tdaystaken = $this->data['taken_leave_data'][0]->totalleavetaken;
+
+
 
             $mdate = date('d/m/Y h:i:s', strtotime($this->data['employee_leave_data']->lm_modified_date));
             $json_return_data = json_encode(array(
@@ -391,6 +437,8 @@ class Leave extends CI_Controller {
                 'leave' => $ldays,
                 'leave_reason' => $this->data['employee_leave_data']->leave_reason,
                 'leave_status' => $this->data['employee_leave_data']->leave_status,
+                'total_days' => $tdays,
+                'total_days_taken' => $tdaystaken,
                 'lm_modified_by' => $this->data['employee_leave_data']->lm_modified_by,
                 'lm_modified_date' => $mdate,
                 'update_employee_leave_id_hidden' => $this->data['employee_leave_data']->leave_id

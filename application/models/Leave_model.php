@@ -58,6 +58,26 @@ class leave_model extends CI_Model {
         return $query->first_row();
     }
 
+    function get_employee_allow_leave_by_id($employee_id) {
+        $this->db->select('sum(allowed_days) as totalleave');
+        $this->db->from('employee_leave');
+
+        $this->db->where('leave_employee_id', $employee_id);
+        //$this->db->where('leave_type_id',$leave_cat_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    function get_employee_taken_leave_by_id($employee_id) {
+        $this->db->select('sum(ndays) as totalleavetaken');
+        $this->db->from('leave_master');
+
+        $this->db->where('employee_id', $employee_id);
+        //$this->db->where('leave_type_id',$leave_cat_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     function get_employee_leave_list($emp_id) {
         if ($emp_id == 0) {
             $this->db->join('leave_category_master', 'leave_category_master.leave_category_id = leave_master.leave_category_id');
@@ -67,7 +87,7 @@ class leave_model extends CI_Model {
         } else {
             $this->db->join('leave_category_master', 'leave_category_master.leave_category_id = leave_master.leave_category_id');
             $this->db->join('employee_master', 'employee_master.employee_id = leave_master.employee_id');
-            $query = $this->db->get_where('leave_master',array('leave_master.employee_id'=>$emp_id));
+            $query = $this->db->get_where('leave_master', array('leave_master.employee_id' => $emp_id));
             return $query->result();
         }
     }

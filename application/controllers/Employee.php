@@ -182,7 +182,7 @@ class Employee extends CI_Controller {
 
                 if ($emp_leave[$i] != '') {
                     $leave_param = array(
-                        'employee_id' => $emp_id,
+                        'leave_employee_id' => $emp_id,
                         'leave_type_id' => $emp_leave_type[$i],
                         'allowed_days' => $emp_leave[$i],
                         'created_by' => $uname,
