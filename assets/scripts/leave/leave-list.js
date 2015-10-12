@@ -25,8 +25,8 @@ $(document).ready(function () {
                         data.leave_data.leave_category_id]
                             );
                     $("#add_leave_type_form")[0].reset();
-                    $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> ' + data.leave_data.leave_name + ' Successfully Added</div>');
-                    $(".alert-success").hide(7000);
+                    $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong> ' + data.leave_data.leave_name + ' Successfully Added</div>').delay(5000).fadeOut();
+                    //$(".alert-success").hide(7000);
                 }
             }
 

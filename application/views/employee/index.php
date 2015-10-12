@@ -1,14 +1,15 @@
 <div class="row">
     <div class="col-md-12">
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
-        <?php if ($this->session->flashdata('success') != "") { ?>
-            <div class="alert alert-success">
-                <strong>Success!</strong> <?php echo $this->session->flashdata('success'); ?>
-            </div>
-            <?php
-        }
-        ?>
-        
+        <div id="alert_msg">
+            <?php if ($this->session->flashdata('success') != "") { ?>
+                <div class="alert alert-success">
+                    <strong>Success!</strong> <?php echo $this->session->flashdata('success'); ?>
+                </div>
+                <?php
+            }
+            ?>
+        </div>
         <div class="portlet">
             <div class="portlet-title">
                 <div class="caption">
@@ -105,7 +106,7 @@
                                             <?php echo $row->email_id; ?> </a>
                                     </td>
                                     <td>
-                                        <?php echo date('d/m/Y',strtotime($row->join_date)); ?>
+                                        <?php echo date('d/m/Y', strtotime($row->join_date)); ?>
                                     </td>
                                     <td class="center">
                                         <?php echo $row->designation_name; ?>

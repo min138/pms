@@ -46,19 +46,20 @@ $(document).ready(function () {
             }
         }
     });
-
     $.validator.addMethod("greaterThan",
             function (value, element, params) {
-
-                if (!/Invalid|NaN/.test(new Date(value))) {
-                    return new Date(value) > new Date($(params).val());
+                if ($('#employee_leave').val() == "Range") {
+                    console.log($('#employee_leave').val());
+                    if (!/Invalid|NaN/.test(new Date(value))) {
+                        return new Date(value) > new Date($(params).val());
+                    }
+                } else {
+                    return true;
                 }
             }, 'Must be greater than {0}.');
-
     var form1 = $('#apply_leave');
     var error1 = $('.alert-danger', form1);
     var success1 = $('.alert-success', form1);
-
     form1.validate({
         errorElement: 'span', //default input error message container
         errorClass: 'help-block', // default input error message class
@@ -75,7 +76,9 @@ $(document).ready(function () {
                 required: true,
                 date: true
             },
-            
+            end_date: {
+                greaterThan: "#start_date",
+            },
             employee_leave: {
                 required: true
             },
@@ -104,19 +107,20 @@ $(document).ready(function () {
 function show_end_date(val) {
     if (val == "Range") {
         $("#end_date").val('');
-        $('input[name="end_date"]').rules("add", {
-            required: true,
-            greaterThan: "#start_date",
-            date: true
-        });
+//        $('input[name="end_date"]').rules("add", {
+//            required: true,
+//            greaterThan: "#start_date",
+//            date: true
+//        });
         document.getElementById('edate').style.display = '';
     } else {
+
         $("#end_date").val('');
-        $('input[name="end_date"]').rules("remove", {
-            required: true,
-            greaterThan: "#start_date",
-            date: true
-        });
         document.getElementById('edate').style.display = 'none';
+//        $('input[name="end_date"]').rules("remove", {
+//            required: false,
+//            greaterThan: "#start_date",
+//            date: false
+//        });
     }
 }

@@ -23,7 +23,7 @@ $(document).ready(function () {
             [0, "asc"]
         ] // set first column as a default sort by asc
     });
-    $(".alert-success").hide(7000);
+    $(".alert-success").delay(5000).fadeOut();
     $(".status").on("click", function (e) {
         var current_object = $(this);
         var employee_id = current_object.data("employee_id");
@@ -42,6 +42,8 @@ $(document).ready(function () {
                 var class_name = (data == "active") ? "label label-sm label-success status" : "label label-sm label-danger status";
                 current_object.removeClass();
                 current_object.addClass(class_name);
+                
+                $("#alert_msg").html('<div class="alert alert-success"><strong>Success!</strong>  Successfully Change Status</div>').delay(5000).fadeOut();
             }
         });
     }); 

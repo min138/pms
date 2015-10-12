@@ -30,8 +30,12 @@ $(document).ready(function () {
 
     $.validator.addMethod("greaterThan",
             function (value, element, params) {
-                if (!/Invalid|NaN/.test(new Date(value))) {
-                    return new Date(value) > new Date($(params).val());
+                if ($('#employee_leave').val() == "Range") {
+                    if (!/Invalid|NaN/.test(new Date(value))) {
+                        return new Date(value) > new Date($(params).val());
+                    }
+                } else {
+                    return true;
                 }
             }, 'Must be greater than {0}.');
     var form1 = $('#apply_leave');
@@ -50,7 +54,6 @@ $(document).ready(function () {
             start_date: {
                 required: true
             },
-            
             employee_leave: {
                 required: true
             },
@@ -79,19 +82,19 @@ $(document).ready(function () {
 function show_end_date(val) {
     if (val == "Range") {
         $("#end_date").val('');
-        $('input[name="end_date"]').rules("add", {
-            required: true,
-            greaterThan: "#start_date",
-            date: true
-        });
+//        $('input[name="end_date"]').rules("add", {
+//            required: true,
+//            greaterThan: "#start_date",
+//            date: true
+//        });
         document.getElementById('edate').style.display = '';
     } else {
         $("#end_date").val('');
-        $('input[name="end_date"]').rules("remove", {
-            required: true,
-            greaterThan: "#start_date",
-            date: true
-        });
+//        $('input[name="end_date"]').rules("remove", {
+//            required: true,
+//            greaterThan: "#start_date",
+//            date: true
+//        });
         document.getElementById('edate').style.display = 'none';
     }
 }

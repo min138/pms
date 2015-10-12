@@ -150,18 +150,18 @@
                                         <?php
                                         if ($row->leave_status == "approved") {
                                             ?>
-                                            <span class="label label-sm label-success status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo str_replace("_"," ",$row->leave_status); ?></span>
+                                            <span class="label label-sm label-success status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo str_replace("_", " ", $row->leave_status); ?></span>
                                             <?php
                                         } elseif ($row->leave_status == "disapproved") {
                                             ?>
-                                            <span class="label label-sm label-danger status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo str_replace("_"," ",$row->leave_status); ?></span>
+                                            <span class="label label-sm label-danger status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo str_replace("_", " ", $row->leave_status); ?></span>
                                             <?php
                                         } else {
                                             ?>
-                                            <span class="label label-sm label-warning status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo str_replace("_"," ",$row->leave_status); ?></span>
-            <?php
-        }
-        ?>
+                                            <span class="label label-sm label-warning status" style="cursor: pointer;" data-leave_id="<?php echo $row->leave_id; ?>" data-status="<?php echo $row->leave_status; ?>"><?php echo str_replace("_", " ", $row->leave_status); ?></span>
+                                            <?php
+                                        }
+                                        ?>
                                     </td>
                                 </tr>
                                 <?php
@@ -170,14 +170,15 @@
                         ?>
                     </tbody>
                 </table>
+
             </div>
         </div>
         <!-- END EXAMPLE TABLE PORTLET-->
     </div>
 </div>
-
 <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <form id="update_employee_leave_form" method="post">
+
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -187,7 +188,19 @@
 
             </div>
 
-
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label">
+                            <strong>Code</strong>
+                        </label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="hidden" name="update_employee_leave_id" id="update_employee_leave_id">
+                        <label class="control-label" id="emp_code"></label>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <div class="col-sm-3">
@@ -196,7 +209,7 @@
                         </label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="hidden" name="update_employee_leave_id" id="update_employee_leave_id">
+
                         <label class="control-label" id="emp_name"></label>
                     </div>
                 </div>
@@ -248,12 +261,12 @@
                             <strong>Reason</strong>
                         </label>
                     </div>
-                   
+
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12 form-group">
-                   
+
                     <div class="col-sm-12">
                         <label class="control-label" id="emp_leave_reason" style="text-align: justify;"></label>
                     </div>
@@ -318,5 +331,6 @@
                 <button type="submit" class="btn btn-primary save-changes">Save changes</button>
             </div>
         </div>
+
     </form>
 </div>

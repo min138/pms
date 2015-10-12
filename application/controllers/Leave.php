@@ -431,6 +431,7 @@ class Leave extends CI_Controller {
             $mdate = date('d/m/Y h:i:s', strtotime($this->data['employee_leave_data']->lm_modified_date));
             $json_return_data = json_encode(array(
                 'employee_leave_data' => $json_employee_leave_data,
+                'employee_code' => $this->data['employee_leave_data']->employee_code,
                 'employee_name' => $this->data['employee_leave_data']->employee_last_name . ' ' . $this->data['employee_leave_data']->employee_first_name . ' ' . $this->data['employee_leave_data']->employee_middle_name,
                 'leave_type' => $this->data['employee_leave_data']->leave_name,
                 'leave_date' => $ldate,
