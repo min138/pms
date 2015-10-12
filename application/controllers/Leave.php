@@ -118,10 +118,11 @@ class Leave extends CI_Controller {
             } else {
 
                 $leave_name = $this->input->post('leave_name');
-
+                $uname = $this->session->userdata('username');
                 $param = array(
                     'leave_name' => $leave_name,
-                    'modified_date' => date("Y-m-d H:i:s")
+                    'create_by' => $uname,
+                    'created_date' => date("Y-m-d H:i:s")
                 );
                 //Transfering data to Model
                 $leave_id = $this->leave_model->leave_insert($param);
@@ -159,18 +160,14 @@ class Leave extends CI_Controller {
                     'response_update' => "<div class='alert alert-danger'>" . validation_errors() . "</div>",
                 );
             } else {
-//            $return = array(
-//                'status' => "true",
-//                'response_update' => "<div class='alert alert-success'> Success Fully Updated...!!</div>",
-//            );
                 $leave_name = $this->input->post('update_leave_name');
-                // $designation = $this->input->post('update_designation_name');
+                $uname = $this->session->userdata('username');
                 $leave_id_hidden = $this->input->post('update_leave_id_hidden');
 
                 $param = array(
                     'leave_name' => $leave_name,
-                    //'designation_name' => $designation,
-                    'modified_date' => date("Y-m-d H:i:s"),
+                    'modified_by' => $uname,
+                    'modified_date' => date("Y-m-d H:i:s")
                 );
 
                 $this->leave_model->leave_update($leave_id_hidden, $param);
@@ -198,10 +195,7 @@ class Leave extends CI_Controller {
             $leave_category_id = $this->input->post("leave_category_id");
 
             $this->data['leave_data'] = $this->leave_model->get_leave_by_id($leave_category_id);
-            // echo $this->data['department_data'];
-            //  exit();
-            //$this->data['department_name'] = $this->department_model->get_department_name($this->data['department_data']->department_id);
-
+            
             $json_leave_data = array(
                 'id' => $this->data['leave_data']->leave_category_id,
                 'text' => $this->data['leave_data']
@@ -415,7 +409,7 @@ class Leave extends CI_Controller {
             $uname = $this->session->userdata('username');
 
             $emp_leave_id_hidden = $this->input->post('update_employee_leave_id');
-            
+
 
             $param = array(
                 'leave_status' => $emp_leave_status,

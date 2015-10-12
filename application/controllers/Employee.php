@@ -49,14 +49,14 @@ class Employee extends CI_Controller {
         //Page Script
         $this->template->add_js('scripts/app.js');
         $this->template->add_js('scripts/employee/employee-function.js');
-        
+
 
         $this->data['js'] = $this->template->js;
         $this->data['css'] = $this->template->css;
 
         $this->data['title'] = "Employee";
         $this->data['page_title'] = "Add Employee";
-        $this->data['active_tab'] = "add-employee";
+        $this->data['active_tab'] = "employee";
         $this->data['page_content'] = "employee/add_employee";
 
         $this->data['leave'] = $this->employee_model->leave_type();
@@ -123,7 +123,7 @@ class Employee extends CI_Controller {
             $path = $this->upload->data();
             $img_name = $path['file_name'];
 
-            //$image = $this->input->$_FILES['employee_photo']['name'];
+            $uname = $this->session->userdata('username');
 
             $emp_param = array(
                 'employee_code' => $code,
@@ -141,8 +141,8 @@ class Employee extends CI_Controller {
                 'join_date' => $join_date,
                 'office_number' => $homeno,
                 'email_id' => $email,
+                'created_by' => $uname,
                 'created_date' => date('Y-m-d H:i:s'),
-                'modified_date' => date('Y-m-d H:i:s'),
                 'status' => 'active'
             );
             //Transfering data to Model
@@ -157,8 +157,8 @@ class Employee extends CI_Controller {
                 'state' => $state,
                 'city' => $city,
                 'pin_code' => $pincode,
+                'create_by' => $uname,
                 'created_date' => date('Y-m-d H:i:s'),
-                'modified_date' => date('Y-m-d H:i:s'),
                 'status' => 'active'
             );
             //Transfering data to Model
@@ -169,8 +169,8 @@ class Employee extends CI_Controller {
                 'login_employee_id' => $emp_id,
                 'company_email_id' => $login,
                 'password' => $password,
+                'create_by' => $uname,
                 'created_date' => date('Y-m-d H:i:s'),
-                'modified_date' => date('Y-m-d H:i:s'),
                 'status' => 'active'
             );
             //Transfering data to Model
@@ -185,8 +185,8 @@ class Employee extends CI_Controller {
                         'employee_id' => $emp_id,
                         'leave_type_id' => $emp_leave_type[$i],
                         'allowed_days' => $emp_leave[$i],
-                        'created_date' => date('Y-m-d H:i:s'),
-                        'modified_date' => date('Y-m-d H:i:s')
+                        'created_by' => $uname,
+                        'created_date' => date('Y-m-d H:i:s')
                     );
                     $this->employee_model->leave_insert('employee_leave', $leave_param);
                 }
@@ -212,11 +212,11 @@ class Employee extends CI_Controller {
         //Page Script
         $this->template->add_js('scripts/app.js');
         $this->template->add_js('scripts/employee/employee-function.js');
-        
+
 
         $this->data['title'] = "Employee";
         $this->data['page_title'] = "Edit Employee";
-        $this->data['active_tab'] = "edit-employee";
+        $this->data['active_tab'] = "employee";
         $this->data['page_content'] = "employee/edit_employee";
 
         $this->data['employee'] = $this->employee_model->get_employee_data($id);
@@ -308,7 +308,7 @@ class Employee extends CI_Controller {
             $path = $this->upload->data();
             $img_name = $path['file_name'];
 
-            //$image = $this->input->$_FILES['employee_photo']['name'];
+            $uname = $this->session->userdata('username');
 
             if ($img_name == '') {
 
@@ -327,6 +327,7 @@ class Employee extends CI_Controller {
                     'join_date' => $join_date,
                     'office_number' => $homeno,
                     'email_id' => $email,
+                    'modified_by' => $uname,
                     'modified_date' => date('Y-m-d H:i:s')
                 );
             } else {
@@ -346,6 +347,7 @@ class Employee extends CI_Controller {
                     'join_date' => $join_date,
                     'office_number' => $homeno,
                     'email_id' => $email,
+                    'modified_by' => $uname,
                     'modified_date' => date('Y-m-d H:i:s')
                 );
             }
@@ -361,6 +363,7 @@ class Employee extends CI_Controller {
                 'state' => $state,
                 'city' => $city,
                 'pin_code' => $pincode,
+                'modified_by' => $uname,
                 'modified_date' => date('Y-m-d H:i:s')
             );
             //Transfering data to Model
@@ -369,6 +372,7 @@ class Employee extends CI_Controller {
 
             $login_param = array(
                 'company_email_id' => $login,
+                'modified_by' => $uname,
                 'modified_date' => date('Y-m-d H:i:s')
             );
             //Transfering data to Model
@@ -381,6 +385,7 @@ class Employee extends CI_Controller {
                 if ($emp_leave[$i] != '') {
                     $leave_param = array(
                         'allowed_days' => $emp_leave[$i],
+                        'modified_by' => $uname,
                         'modified_date' => date('Y-m-d H:i:s')
                     );
 
@@ -466,11 +471,15 @@ class Employee extends CI_Controller {
             $employee_id = $this->input->post("employee_id");
             $status = $this->input->post("status");
             $status = ($status == "active") ? "deactive" : "active";
-
+            $uname = $this->session->userdata('username');
             $data = array(
-                "status" => $status
+                "status" => $status,
+                'modified_by' => $uname,
+                'modified_date' => date('Y-m-d H:i:s')
             );
-            $this->employee_model->change_status_model($employee_id, $data);
+            $this->employee_model->change_status_model("employee_master",$employee_id, $data, "employee_id");
+            $this->employee_model->change_status_model("address_master",$employee_id, $data, "address_employee_id");
+            $this->employee_model->change_status_model("login_master",$employee_id, $data, "login_employee_id");
             echo $status;
         }
     }

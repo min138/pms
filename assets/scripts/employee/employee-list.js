@@ -24,5 +24,25 @@ $(document).ready(function () {
         ] // set first column as a default sort by asc
     });
     $(".alert-success").hide(7000);
-     
+    $(".status").on("click", function (e) {
+        var current_object = $(this);
+        var employee_id = current_object.data("employee_id");
+        var status = current_object.data("status");
+
+        $.ajax({
+            type: "POST",
+            url: BASE_URL + "employee/change_status",
+            data: {
+                employee_id: employee_id,
+                status: status
+            },
+            success: function (data) {
+                current_object.text(data);
+                current_object.data("status", data);
+                var class_name = (data == "active") ? "label label-sm label-success status" : "label label-sm label-danger status";
+                current_object.removeClass();
+                current_object.addClass(class_name);
+            }
+        });
+    }); 
 });

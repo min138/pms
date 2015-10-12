@@ -109,9 +109,9 @@ class Employee_model extends CI_Model {
         return $result;
     }
 
-    function change_status_model($employee_id, $data) {
-        $this->db->where('employee_id', $employee_id);
-        $this->db->update('employee_master', $data);
+    function change_status_model($tbl_name,$employee_id, $data,$fieldname) {
+        $this->db->where($fieldname, $employee_id);
+        $this->db->update($tbl_name, $data);
     }
 
     function get_department_id_by_employee($id) {
